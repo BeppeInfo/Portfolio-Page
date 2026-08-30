@@ -663,7 +663,7 @@ spec:
     spec:
       containers:
         - name: portfolio
-          image: leonardojc/portfolio:latest
+          image: ancapepe/portfolio:latest
           ports:
             - containerPort: 80
           resources:
