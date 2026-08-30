@@ -3,8 +3,10 @@ kind: Ingress
 metadata:
   name: portfolio
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: traefik
 spec:
+  ingressClassName: traefik
   rules:
     - host: services.choppa.xyz
       http:
@@ -26,3 +28,8 @@ spec:
                 name: portfolio
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - services.choppa.xyz
+        - beppeinfo.choppa.xyz
+      secretName: portfolio-certificate
