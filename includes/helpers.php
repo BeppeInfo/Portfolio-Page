@@ -94,6 +94,9 @@ function t(string $key, string $lang = null): string
         }
     }
 
+    if (is_array($value)) {
+        return $key; // fallback to key if value is still an array
+    }
     return (string) $value;
 }
 

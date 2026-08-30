@@ -51,5 +51,5 @@ function load_strings(string $lang): array
         return $base;
     }
 
-    return array_merge_recursive($base, $override);
+    return array_replace_recursive($base, $override);
 }
