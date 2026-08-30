@@ -951,8 +951,60 @@ All included in `php:8.2-fpm-alpine` base image.
 ---
 
 *Document created: 2025*
-*Last updated: 2025-08-30*
-*Status: Approved — ready for implementation*
+*Last updated: 2025-09-10*
+*Status: Phase 1 Complete — Ready for Phase 2*
+
+---
+
+## Deployment Status
+
+| Component | Status | Details |
+|-----------|--------|---------|
+| Docker image | ✅ Built & pushed | `ancapope/portfolio:latest` — 98.3 MB |
+| GitHub repo | ✅ Active | `github.com/BeppeInfo/Portfolio-Page` |
+| CI/CD pipeline | ✅ Active | GitHub Actions auto-builds on `main` push |
+| Kubernetes manifests | ✅ Ready | `k8s/` directory, configured for Traefik + cert-manager |
+| k3s deployment | ⏸ Pending | Awaiting manual deployment (DNS records needed) |
+| DNS records | ⏸ Pending | `services.choppa.xyz` and `beppeinfo.choppa.xyz` → cluster IP |
+
+---
+
+## Implementation History
+
+### Phase 1 — Foundation (Completed)
+
+All Phase 1 tasks completed. The site is fully functional with:
+- Working navigation and bio page
+- Multi-language support (EN/PT/ES) with language switcher
+- Dark theme CSS with custom properties
+- Docker image (98.3 MB, under 100 MB target)
+- Kubernetes manifests (Traefik ingress + cert-manager)
+- GitHub Actions CI/CD pipeline
+- 404 page
+
+### Bugs Fixed During Development
+
+| Issue | Fix |
+|-------|-----|
+| Nginx `server` directive error | Split `nginx.conf` (base) + `server.conf` (conf.d/) for Alpine compatibility |
+| PHP-FPM `degrade_calls_all` error | Removed invalid directive from `www.conf` |
+| GD extension missing at runtime | Added runtime libs (`libpng`, `libjpeg-turbo`, `libwebp`, `zlib`, `icu-libs`) after build |
+| Translation returning "Array" | Changed `array_merge_recursive` → `array_replace_recursive` in `load_strings()` |
+| Nav labels not translating | Updated `site.json` navigation labels to use dot-notation keys (`nav.bio`) |
+| `base_url()` returning `https://` locally | Removed `fastcgi_param HTTPS on;`, added `X-Forwarded-Proto` support in `helpers.php` |
+
+---
+
+## Next Steps (Phase 2)
+
+1. **Education page** — `config/education.json` + `views/education.php` (timeline UI)
+2. **Experience page** — `config/experience.json` + `views/experience.php` (timeline UI)
+3. **Media showcase** — `config/media.json` + `views/media.php` (gallery + Peertube embeds)
+4. **Image assets** — Upload avatar, project screenshots, video thumbnails
+5. **Kubernetes deployment** — Apply manifests to k3s cluster
+6. **DNS configuration** — Add A records for both domains
+
+---
 
 ### Updated Requirements Summary
 
