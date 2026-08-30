@@ -172,6 +172,8 @@ Portfolio-Page/
   "tagline": "Software Developer & Engineer",
   "description": "Professional portfolio of LeonardoJC",
   "language": "en",
+  "languages": ["en", "pt", "es"],
+  "default_language": "en",
   "timezone": "America/Sao_Paulo",
   "navigation": [
     { "label": "Bio",       "route": "bio" },
@@ -182,15 +184,17 @@ Portfolio-Page/
   "social": {
     "github":  "https://github.com/leonardojc",
     "linkedin":"https://linkedin.com/in/leonardojc",
-    "peertube":"https://your-peertube-instance.tube",
+    "peertube":"https://tube.choppa.xyz",
     "email":   "mailto:you@example.com"
   },
   "colors": {
-    "primary":   "#2563eb",
-    "secondary": "#1e293b",
-    "accent":    "#38bdf8",
-    "background":"#f8fafc",
-    "text":      "#0f172a"
+    "primary":   "#f5c518",
+    "secondary": "#1a1a2e",
+    "accent":    "#00b4d8",
+    "background":"#0d0d1a",
+    "surface":   "#16213e",
+    "text":      "#e0e0e0",
+    "text-muted":"#a0a0b0"
   },
   "footer": "© 2025 LeonardoJC. All rights reserved."
 }
@@ -332,7 +336,7 @@ Portfolio-Page/
 - **Arrays for timelines** (education, experience) — naturally ordered
 - **Categorized items** (media) — flexible filtering
 - **All dates as ISO 8601 strings** — easy sorting
-- **External links for videos** — no video files stored locally
+- **External links for videos** — no video files stored locally; Peertube base URL: `https://tube.choppa.xyz`
 - **Thumbnails stored locally** — even for Peertube embeds, for gallery view consistency
 
 ---
@@ -352,7 +356,9 @@ Portfolio-Page/
 - Headline + summary paragraph
 - Skills grid (categorized)
 - Highlight cards (3-4 key strengths)
-- "Download CV" button (optional PDF link)
+- Headline + summary paragraph
+- Skills grid (categorized)
+- Highlight cards (3-4 key strengths)
 
 ### 5.3 Education Page (`/education`)
 
@@ -375,7 +381,7 @@ Portfolio-Page/
 - **Grid layout** with thumbnails
 - **Filter by tags** (optional, JS-powered)
 - **Lightbox** for images
-- **Video embed modal** for Peertube videos
+- **Video lazy-load** for Peertube embeds (thumbnail placeholder → click to load iframe)
 - **Infinite scroll or pagination** (if many items)
 
 ### 5.6 Image Detail View (`/media/image/{id}`)
@@ -419,7 +425,7 @@ Portfolio-Page/
 | Aspect | Detail |
 |--------|--------|
 | **Hosting** | External Peertube instance — no video files stored |
-| **Embed method** | `<iframe>` using Peertube's embed URL |
+| **Embed method** | `<iframe>` using Peertube embed URL format: `{base}/videos/embed/{videoId}` |
 | **Lazy load** | Placeholder thumbnail shown first; iframe loaded on click (improves initial page load) |
 | **Thumbnail** | Local thumbnail image for gallery consistency |
 | **Fallback** | Link to Peertube video if iframe fails |
@@ -472,38 +478,52 @@ php generate-thumbnails.php public/images/projects/alpha.jpg
 - **Mobile-first** responsive design
 - **No external CSS frameworks** — keeps it lightweight
 
-### 7.2 Custom Properties
+### 7.2 Dark Theme — Custom Properties
 
 ```css
 :root {
-  --color-primary:   #2563eb;
-  --color-secondary: #1e293b;
-  --color-accent:    #38bdf8;
-  --color-bg:        #f8fafc;
-  --color-text:      #0f172a;
-  --color-text-muted:#64748b;
-  --color-border:    #e2e8f0;
+  --color-primary:   #f5c518;   /* Yellow */
+  --color-secondary: #1a1a2e;   /* Dark navy */
+  --color-accent:    #00b4d8;   /* Teal/cyan */
+  --color-bg:        #0d0d1a;   /* Near black */
+  --color-surface:   #16213e;   /* Dark card bg */
+  --color-text:      #e0e0e0;   /* Light gray text */
+  --color-text-muted:#a0a0b0;   /* Muted text */
+  --color-border:    #2a2a4a;
   --font-sans:       'Inter', system-ui, -apple-system, sans-serif;
   --font-mono:       'JetBrains Mono', monospace;
   --radius:          8px;
-  --shadow:          0 1px 3px rgba(0,0,0,0.1);
+  --shadow:          0 2px 8px rgba(0,0,0,0.4);
   --max-width:       1200px;
 }
 ```
 
-### 7.3 Theme Switch (Future)
+### 7.3 Multi-Language Support
 
-Data-driven color scheme from `site.json` allows easy light/dark mode:
+All translatable strings live in language files:
 
-```css
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg:   #0f172a;
-    --color-text: #f1f5f9;
-    --color-border: #334155;
-  }
-}
 ```
+config/
+├── site.json
+├── strings.en.json   # English (default)
+├── strings.pt.json   # Portuguese
+└── strings.es.json   # Spanish
+```
+
+Language detection: `Accept-Language` header → fallback to `en`.
+Language switcher in nav bar.
+
+### 7.4 JavaScript (Vanilla, Minimal)
+
+| Feature | Implementation |
+|---------|---------------|
+| Mobile nav toggle | Class toggle on `.nav` |
+| Language switcher | JS reload with `?lang=pt` query param |
+| Smooth scroll | `scroll-behavior: smooth` + JS for offset |
+| Lightbox | Custom overlay with prev/next navigation |
+| Video lazy-load | Click-to-iframe swap (see §6.3) |
+| Tab filtering | CSS class toggle on gallery items |
+| **Total JS** | < 300 lines, no dependencies |
 
 ### 7.4 JavaScript (Vanilla, Minimal)
 
@@ -526,10 +546,11 @@ Data-driven color scheme from `site.json` allows easy light/dark mode:
 # Stage 1: Build (not needed for pure PHP, but kept for thumbnail generation)
 FROM php:8.2-fpm-alpine AS base
 RUN apk add --no-cache \
-      imagemagick \
-      icu-dev \
+      icu-data-full \
+      icu-libs \
     && docker-php-ext-install \
        intl \
+       mbstring \
        gd
 
 # Stage 2: Production
@@ -691,7 +712,8 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: portfolio.yourdomain.com
+    - host: services.choppa.xyz
+    - host: beppeinfo.choppa.xyz
       http:
         paths:
           - path: /
@@ -885,7 +907,7 @@ before_footer     // inject newsletter signup, etc.
 |---------|-----------|-------|
 | **Blog** | Medium | Add `config/posts.json`, list view, detail view |
 | **Contact form** | Medium | Server-side validation, email via SMTP or form endpoint |
-| **Multi-language** | Low | `config/bio.en.json`, `config/bio.pt.json` — detect `Accept-Language` |
+| **Multi-language** | Implemented | `config/strings.{en,pt,es}.json` — detect `Accept-Language`, switcher in nav |
 | **Search** | Low | Client-side JSON search (small dataset) |
 | **Analytics** | Low | Plausible or Umami (self-hosted, privacy-friendly) |
 | **Admin panel** | High | Password-protected JSON editor — probably overkill |
@@ -908,10 +930,10 @@ before_footer     // inject newsletter signup, etc.
 
 | Extension | Purpose |
 |-----------|---------|
-| `intl` | Date formatting, sorting |
+| `intl` | Date formatting, sorting, locale detection |
 | `gd` | Image thumbnail generation |
 | `json` | Native — no install needed |
-| `mbstring` | Multibyte string handling |
+| `mbstring` | Multibyte string handling (UTF-8 for PT/ES) |
 
 All included in `php:8.2-fpm-alpine` base image.
 
@@ -929,5 +951,18 @@ All included in `php:8.2-fpm-alpine` base image.
 ---
 
 *Document created: 2025*
-*Last updated: 2025*
-*Status: Draft — awaiting review*
+*Last updated: 2025-08-30*
+*Status: Approved — ready for implementation*
+
+### Updated Requirements Summary
+
+| Item | Decision |
+|------|----------|
+| Languages | English (default), Portuguese, Spanish |
+| Peertube instance | `https://tube.choppa.xyz` |
+| Domains | `services.choppa.xyz` + `beppeinfo.choppa.xyz` |
+| Image processing | PHP GD (built-in, lighter image) |
+| CV download | Not needed |
+| Theme | Dark — dark gray (`#0d0d1a`), yellow (`#f5c518`), teal/cyan (`#00b4d8`) |
+| Repo host | GitHub |
+| Multi-language | Implemented via `strings.{en,pt,es}.json` + `Accept-Language` detection + nav switcher |
