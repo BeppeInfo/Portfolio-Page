@@ -1,0 +1,32 @@
+{
+  "title": "LeonardoJC — Portfolio",
+  "tagline": "Software Developer & Engineer",
+  "description": "Professional portfolio of LeonardoJC",
+  "language": "en",
+  "languages": ["en", "pt", "es"],
+  "default_language": "en",
+  "timezone": "America/Sao_Paulo",
+  "navigation": [
+    { "label": "bio", "route": "bio" },
+    { "label": "education", "route": "education" },
+    { "label": "experience", "route": "experience" },
+    { "label": "media", "route": "media" }
+  ],
+  "social": {
+    "github": "https://github.com/leonardojc",
+    "linkedin": "https://linkedin.com/in/leonardojc",
+    "peertube": "https://tube.choppa.xyz",
+    "email": "mailto:you@example.com"
+  },
+  "colors": {
+    "primary": "#f5c518",
+    "secondary": "#1a1a2e",
+    "accent": "#00b4d8",
+    "background": "#0d0d1a",
+    "surface": "#16213e",
+    "text": "#e0e0e0",
+    "text-muted": "#a0a0b0",
+    "border": "#2a2a4a"
+  },
+  "footer": "© 2025 LeonardoJC. All rights reserved."
+}

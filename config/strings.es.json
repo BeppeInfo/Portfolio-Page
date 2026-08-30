@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "bio": "Bio",
+    "education": "Educación",
+    "experience": "Experiencia",
+    "media": "Medios"
+  },
+  "bio": {
+    "headline": "Desarrollador de Software",
+    "summary": "Desarrollador apasionado con experiencia en la construcción de aplicaciones web robustas e infraestructura cloud-native.",
+    "skills_title": "Habilidades",
+    "highlights_title": "Lo Que Hago"
+  },
+  "education": {
+    "title": "Educación",
+    "degree": "Grado",
+    "institution": "Institución",
+    "location": "Ubicación",
+    "year": "Período"
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "role": "Cargo",
+    "company": "Empresa",
+    "remote": "Remoto",
+    "achievements": "Logros Principales",
+    "technologies": "Tecnologías"
+  },
+  "media": {
+    "title": "Galería de Medios",
+    "projects": "Proyectos",
+    "gallery": "Galería",
+    "videos": "Videos",
+    "view_on_peertube": "Ver en Peertube",
+    "play": "Reproducir"
+  },
+  "common": {
+    "back": "Volver",
+    "close": "Cerrar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "language": "Idioma",
+    "not_found": "Página no encontrada",
+    "go_home": "Ir al inicio"
+  },
+  "footer": "© 2025 LeonardoJC. Todos los derechos reservados."
+}

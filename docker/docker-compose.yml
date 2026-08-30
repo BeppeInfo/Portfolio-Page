@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  portfolio:
+    build:
+      context: ..
+      dockerfile: Portfolio-Page/docker/Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ../config:/var/www/html/config:cached
+      - ../public/assets:/var/www/html/public/assets:cached
+      - ../public/images:/var/www/html/public/images:cached
+    restart: unless-stopped

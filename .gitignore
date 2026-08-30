@@ -1,0 +1,17 @@
+# Directories
+public/images/
+public/images/bio/
+public/images/projects/
+public/images/media/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
