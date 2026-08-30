@@ -146,11 +146,19 @@ function e(string $str): string
  */
 function base_url(): string
 {
-    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+    // Check X-Forwarded-Proto for reverse proxy / Kubernetes ingress
+    if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+        $protocol = 'https';
+    } elseif (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+        $protocol = 'https';
+    } else {
+        $protocol = 'http';
+    }
+
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     $script = dirname($_SERVER['SCRIPT_NAME']);
 
-    if ($script === '/') {
+    if ($script === '/' || $script === '/index.php') {
         return $protocol . '://' . $host;
     }
 

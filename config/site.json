@@ -7,10 +7,10 @@
   "default_language": "en",
   "timezone": "America/Sao_Paulo",
   "navigation": [
-    { "label": "bio", "route": "bio" },
-    { "label": "education", "route": "education" },
-    { "label": "experience", "route": "experience" },
-    { "label": "media", "route": "media" }
+    { "label": "nav.bio", "route": "bio" },
+    { "label": "nav.education", "route": "education" },
+    { "label": "nav.experience", "route": "experience" },
+    { "label": "nav.media", "route": "media" }
   ],
   "social": {
     "github": "https://github.com/leonardojc",
