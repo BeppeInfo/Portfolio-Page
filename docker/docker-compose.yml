@@ -1,21 +1,20 @@
-version: '3.8'
 services:
   portfolio:
     build:
       context: ..
-      dockerfile: Portfolio-Page/docker/Dockerfile
+      dockerfile: docker/Dockerfile
     ports:
       - "8080:80"
     volumes:
       # User config overrides (bind mount — edit these freely)
-      - ./config/site.json:/var/www/html/config/site.json:cached
-      - ./config/bio.json:/var/www/html/config/bio.json:cached
-      - ./config/education.json:/var/www/html/config/education.json:cached
-      - ./config/experience.json:/var/www/html/config/experience.json:cached
-      - ./config/media.json:/var/www/html/config/media.json:cached
-      - ./config/strings.en.json:/var/www/html/config/strings.en.json:cached
-      - ./config/strings.pt.json:/var/www/html/config/strings.pt.json:cached
-      - ./config/strings.es.json:/var/www/html/config/strings.es.json:cached
+      - ../config/site.json:/var/www/html/config/site.json:cached
+      - ../config/bio.json:/var/www/html/config/bio.json:cached
+      - ../config/education.json:/var/www/html/config/education.json:cached
+      - ../config/experience.json:/var/www/html/config/experience.json:cached
+      - ../config/media.json:/var/www/html/config/media.json:cached
+      - ../config/strings.en.json:/var/www/html/config/strings.en.json:cached
+      - ../config/strings.pt.json:/var/www/html/config/strings.pt.json:cached
+      - ../config/strings.es.json:/var/www/html/config/strings.es.json:cached
       # User images
-      - ./public/images:/var/www/html/public/images:cached
+      - ../public/images:/var/www/html/public/images:cached
     restart: unless-stopped

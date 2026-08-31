@@ -19,6 +19,8 @@ A data-driven, zero-dependency portfolio site built with pure PHP 8.2+, Nginx, a
 - **Data-driven** — Edit JSON files to update content; no code changes needed
 - **Container-native** — Single Docker image with Nginx + PHP-FPM, non-root user, health checks
 - **Peertube integration** — Video embeds via self-hosted Peertube instances
+- **Thumbnail generation** — `scripts/generate-thumbnails.php` converts images to optimized WebP at multiple sizes
+- **Media publishing guide** — Step-by-step instructions in `MEDIA.md`
 - **Responsive** — Mobile-first CSS with hamburger navigation
 - **Security hardened** — Deny access to config/includes/views, security headers, non-root container
 
@@ -275,12 +277,48 @@ public/images/
 │   └── avatar.webp
 ├── projects/
 │   ├── project-slug.webp
-│   └── project-slug-thumb.webp
+│   ├── project-slug-thumb.webp
+│   ├── project-slug-medium.webp
+│   └── project-slug-large.webp
 └── media/
     └── video-slug-thumb.webp
 ```
 
 Supported formats: WebP, PNG, JPEG.
+
+### Thumbnail Generation
+
+Use the built-in script to convert and resize images:
+
+```bash
+# Single file
+php scripts/generate-thumbnails.php public/images/projects/my-project.jpg
+
+# Entire directory (recursive)
+php scripts/generate-thumbnails.php public/images/projects/
+
+# Multiple files
+php scripts/generate-thumbnails.php file1.jpg file2.png
+```
+
+For each source image, the script generates:
+- `{name}.webp` — original quality, full resolution
+- `{name}-thumb.webp` — 300×200 (gallery card)
+- `{name}-medium.webp` — 800×533 (medium display)
+- `{name}-large.webp` — 1600×1067 (lightbox)
+
+All outputs are center-cropped to fit the target aspect ratio and saved as WebP at 85% quality.
+
+> **Requirements:** PHP 8.2+ with GD extension and WebP support (`gd_info()['WebP Support']`).
+
+### Adding Media Content
+
+See **[MEDIA.md](../MEDIA.md)** for the complete publishing guide:
+
+1. **Prepare images** — Use `generate-thumbnails.php` to create optimized WebP files
+2. **Register entries** — Add items to `config/media.json` with correct paths
+3. **Upload** — Place files in the mounted `public/images/` directory
+4. **Verify** — Refresh the media page to see your content
 
 ---
 
@@ -345,6 +383,11 @@ Portfolio-Page/
 │   ├── ingress.yaml               # Traefik ingress + cert-manager TLS
 │   ├── pvc.yaml                   # Persistent volume for images
 │   └── configmap.yaml             # ConfigMap with default config
+│
+├── MEDIA.md                       # Media publishing guide (step-by-step)
+│
+├── scripts/
+│   └── generate-thumbnails.php    # Batch thumbnail generation (GD + WebP)
 │
 ├── .github/workflows/docker.yml   # GitHub Actions: build + push Docker image
 ├── .gitignore
@@ -435,7 +478,7 @@ Edit the `colors` object in `site.json`. The CSS uses CSS custom properties that
 
 - **Base:** `php:8.2-fpm-alpine`
 - **Size:** ~98 MB
-- **PHP Extensions:** `intl`, `mbstring`, `gd` (with WebP/JPEG/PNG support)
+- **PHP Extensions:** `intl`, `mbstring`, `gd` (configured with `--with-webp --with-jpeg --with-freetype` for full image support)
 - **Runtime:** Nginx + PHP-FPM in a single container
 - **User:** `www-data` (non-root)
 - **Config Strategy:** Built-in defaults + runtime overrides via volume mount

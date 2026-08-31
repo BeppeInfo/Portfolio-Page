@@ -155,8 +155,10 @@ Portfolio-Page/
 │   ├── pvc.yaml                  # Persistent volume for media uploads
 │   └── configmap.yaml            # Optional: externalize config
 │
+├── MEDIA.md                      # Media publishing guide
+│
 └── scripts/
-    ├── generate-thumbnails.php   # Batch thumbnail generation
+    ├── generate-thumbnails.php   # Batch thumbnail generation (GD + WebP)
     └── validate-config.php       # Validate JSON config on deploy
 ```
 
@@ -861,6 +863,16 @@ php scripts/validate-config.php
 
 **Phase 3 deliverable:** Full media showcase with images and video embeds.
 
+| # | Task | Status |
+|---|------|--------|
+| 1 | `config/media.json` structure | ✅ Done |
+| 2 | Media gallery template + CSS grid | ✅ Done |
+| 3 | Image lightbox (vanilla JS) | ✅ Done |
+| 4 | Video lazy-load + Peertube embed | ✅ Done |
+| 5 | Thumbnail generation script (`scripts/generate-thumbnails.php`) | ✅ Done |
+| 6 | Category tabs + tag filtering | ✅ Done |
+| 7 | Dockerfile GD + WebP support fix | ✅ Done |
+
 ### Phase 4 — Production Hardening
 
 | # | Task | Estimated Effort |
@@ -995,14 +1007,17 @@ All Phase 1 tasks completed. The site is fully functional with:
 
 ---
 
-## Next Steps (Phase 2)
+## Next Steps
 
-1. **Education page** — `config/education.json` + `views/education.php` (timeline UI)
-2. **Experience page** — `config/experience.json` + `views/experience.php` (timeline UI)
-3. **Media showcase** — `config/media.json` + `views/media.php` (gallery + Peertube embeds)
-4. **Image assets** — Upload avatar, project screenshots, video thumbnails
-5. **Kubernetes deployment** — Apply manifests to k3s cluster
-6. **DNS configuration** — Add A records for both domains
+1. ✅ **Education page** — `config/education.json` + `views/education.php` (timeline UI)
+2. ✅ **Experience page** — `config/experience.json` + `views/experience.php` (timeline UI)
+3. ✅ **Media showcase** — `config/media.json` + `views/media.php` (gallery + Peertube embeds)
+4. ✅ **Thumbnail generation script** — `scripts/generate-thumbnails.php` (GD + WebP)
+5. ✅ **Docker GD + WebP fix** — Proper `docker-php-ext-configure gd --with-webp`
+6. ✅ **Media publishing guide** — `MEDIA.md` (step-by-step for adding content)
+7. **Image assets** — Upload avatar, project screenshots, video thumbnails
+8. **Kubernetes deployment** — Apply manifests to k3s cluster
+9. **DNS configuration** — Add A records for both domains
 
 ---
 

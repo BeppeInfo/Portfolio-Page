@@ -12,11 +12,16 @@ RUN apk add --no-cache \
       libwebp-dev \
       libjpeg-turbo-dev \
       libpng-dev \
+      freetype-dev \
       pkgconfig \
     && docker-php-ext-install \
        intl \
        mbstring \
-       gd \
+    && docker-php-ext-configure gd \
+       --with-jpeg \
+       --with-webp \
+       --with-freetype \
+    && docker-php-ext-install gd \
     && docker-php-ext-enable intl \
     && apk del icu-dev oniguruma-dev zlib-dev libwebp-dev libjpeg-turbo-dev libpng-dev pkgconfig \
     && apk add --no-cache \
