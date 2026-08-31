@@ -5,13 +5,13 @@ metadata:
 data:
   site.json: |
     {
-      "title": "LeonardoJC — Portfolio",
+      "title": "John Doe — Portfolio",
       "tagline": "Software Developer & Engineer",
-      "description": "Professional portfolio of LeonardoJC",
+      "description": "Professional portfolio of John Doe",
       "language": "en",
       "languages": ["en", "pt", "es"],
       "default_language": "en",
-      "timezone": "America/Sao_Paulo",
+      "timezone": "UTC",
       "navigation": [
         { "label": "nav.bio", "route": "bio" },
         { "label": "nav.education", "route": "education" },
@@ -19,10 +19,11 @@ data:
         { "label": "nav.media", "route": "media" }
       ],
       "social": {
-        "github": "https://github.com/leonardojc",
-        "linkedin": "https://linkedin.com/in/leonardojc",
-        "peertube": "https://tube.choppa.xyz",
-        "email": "mailto:you@example.com"
+        "github": "https://github.com/johndoe",
+        "gitlab": "https://gitlab.com/johndoe",
+        "linkedin": "https://linkedin.com/in/johndoe",
+        "peertube": "https://example.tube/videos",
+        "email": "mailto:john@example.com"
       },
       "colors": {
         "primary": "#f5c518",
@@ -34,5 +35,102 @@ data:
         "text-muted": "#a0a0b0",
         "border": "#2a2a4a"
       },
-      "footer": "© 2025 LeonardoJC. All rights reserved."
+      "footer": "© 2026 John Doe. All rights reserved."
+    }
+  bio.json: |
+    {
+      "name": "John Doe",
+      "nickname": "johndoe",
+      "headline": "Software Developer & Engineer",
+      "company": "Self-Employed",
+      "avatar": "/images/bio/avatar.webp",
+      "summary": "Software developer with experience building robust web applications and cloud-native infrastructure.",
+      "highlights": [
+        { "icon": "code", "title": "Full Stack", "description": "PHP, JavaScript, Docker, Kubernetes..." },
+        { "icon": "cloud", "title": "Cloud Native", "description": "Kubernetes, CI/CD, Infrastructure as Code..." },
+        { "icon": "terminal", "title": "DevOps", "description": "Automation, monitoring, container orchestration..." }
+      ],
+      "skills": [
+        { "category": "Languages", "items": ["PHP", "JavaScript", "Python", "SQL"] },
+        { "category": "Frameworks", "items": ["Laravel", "Node.js"] },
+        { "category": "Infrastructure", "items": ["Docker", "Kubernetes", "Nginx"] }
+      ]
+    }
+  education.json: |
+    [
+      {
+        "year": "2018 – 2022",
+        "degree": "Bachelor of Computer Science",
+        "institution": "University of Example",
+        "location": "City, Country",
+        "description": "Focused on software engineering and distributed systems.",
+        "icon": "graduation-cap"
+      }
+    ]
+  experience.json: |
+    [
+      {
+        "period": "2023 – Present",
+        "role": "Software Developer",
+        "company": "Example Corp",
+        "location": "City, Country",
+        "remote": true,
+        "description": "Building web applications and cloud infrastructure.",
+        "achievements": [
+          "Developed REST API serving 10K+ requests/day"
+        ],
+        "technologies": ["PHP", "Docker", "Kubernetes", "PostgreSQL"],
+        "link": ""
+      }
+    ]
+  media.json: |
+    {
+      "categories": [
+        { "id": "projects", "label": "nav.media.projects", "icon": "folder" },
+        { "id": "videos",   "label": "nav.media.videos", "icon": "video" }
+      ],
+      "items": [
+        {
+          "id": "sample-project",
+          "type": "image",
+          "category": "projects",
+          "title": "Sample Project",
+          "description": "A sample project to demonstrate the media gallery.",
+          "image": "/images/projects/sample.webp",
+          "thumbnail": "/images/projects/sample-thumb.webp",
+          "tags": ["PHP", "Docker"],
+          "links": { "github": "https://github.com/johndoe/sample-project" },
+          "date": "2025-01-01"
+        }
+      ]
+    }
+  strings.en.json: |
+    {
+      "nav": { "bio": "Bio", "education": "Education", "experience": "Experience", "media": "Media" },
+      "bio": { "headline": "Software Developer & Engineer", "summary": "Software developer with experience building robust web applications and cloud-native infrastructure.", "skills_title": "Skills", "highlights_title": "What I Do" },
+      "education": { "title": "Education", "degree": "Degree", "institution": "Institution", "location": "Location", "year": "Period" },
+      "experience": { "title": "Professional Experience", "role": "Role", "company": "Company", "remote": "Remote", "achievements": "Key Achievements", "technologies": "Technologies" },
+      "media": { "title": "Media Showcase", "projects": "Projects", "gallery": "Gallery", "videos": "Videos", "view_on_peertube": "View on Peertube", "play": "Play" },
+      "common": { "back": "Back", "close": "Close", "next": "Next", "previous": "Previous", "language": "Language", "not_found": "Page not found", "go_home": "Go home" },
+      "footer": "© 2026 John Doe. All rights reserved."
+    }
+  strings.pt.json: |
+    {
+      "nav": { "bio": "Bio", "education": "Formação", "experience": "Experiência", "media": "Mídia" },
+      "bio": { "headline": "Desenvolvedor de Software & Engenheiro", "summary": "Desenvolvedor de software com experiência na construção de aplicações web robustas e infraestrutura cloud-native.", "skills_title": "Habilidades", "highlights_title": "O Que Faço" },
+      "education": { "title": "Formação", "degree": "Grau", "institution": "Instituição", "location": "Local", "year": "Período" },
+      "experience": { "title": "Experiência Profissional", "role": "Cargo", "company": "Empresa", "remote": "Remoto", "achievements": "Conquistas Principais", "technologies": "Tecnologias" },
+      "media": { "title": "Galeria de Mídia", "projects": "Projetos", "gallery": "Galeria", "videos": "Vídeos", "view_on_peertube": "Ver no Peertube", "play": "Reproduzir" },
+      "common": { "back": "Voltar", "close": "Fechar", "next": "Próximo", "previous": "Anterior", "language": "Idioma", "not_found": "Página não encontrada", "go_home": "Ir para início" },
+      "footer": "© 2026 John Doe. Todos os direitos reservados."
+    }
+  strings.es.json: |
+    {
+      "nav": { "bio": "Bio", "education": "Educación", "experience": "Experiencia", "media": "Medios" },
+      "bio": { "headline": "Desarrollador de Software & Ingeniero", "summary": "Desarrollador de software con experiencia en la construcción de aplicaciones web robustas e infraestructura cloud-native.", "skills_title": "Habilidades", "highlights_title": "Lo Que Hago" },
+      "education": { "title": "Educación", "degree": "Grado", "institution": "Institución", "location": "Ubicación", "year": "Período" },
+      "experience": { "title": "Experiencia Profesional", "role": "Cargo", "company": "Empresa", "remote": "Remoto", "achievements": "Logros Principales", "technologies": "Tecnologías" },
+      "media": { "title": "Galería de Medios", "projects": "Proyectos", "gallery": "Galería", "videos": "Videos", "view_on_peertube": "Ver en Peertube", "play": "Reproducir" },
+      "common": { "back": "Volver", "close": "Cerrar", "next": "Siguiente", "previous": "Anterior", "language": "Idioma", "not_found": "Página no encontrada", "go_home": "Ir al inicio" },
+      "footer": "© 2026 John Doe. Todos los derechos reservados."
     }

@@ -37,11 +37,15 @@ COPY docker/server.conf /etc/nginx/conf.d/server.conf
 
 # PHP-FPM config
 COPY docker/www.conf /usr/local/etc/php-fpm.d/docker.conf
-RUN mkdir -p /var/run && \
+
+# Copy startup script
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh && \
+    mkdir -p /var/run && \
     chown -R www-data:www-data /var/www/html
 
 # Expose port
 EXPOSE 80
 
-# Start both Nginx and PHP-FPM
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]

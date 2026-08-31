@@ -1,0 +1,33 @@
+{
+  "title": "John Doe — Portfolio",
+  "tagline": "Software Developer & Engineer",
+  "description": "Professional portfolio of John Doe",
+  "language": "en",
+  "languages": ["en", "pt", "es"],
+  "default_language": "en",
+  "timezone": "UTC",
+  "navigation": [
+    { "label": "nav.bio", "route": "bio" },
+    { "label": "nav.education", "route": "education" },
+    { "label": "nav.experience", "route": "experience" },
+    { "label": "nav.media", "route": "media" }
+  ],
+  "social": {
+    "github": "https://github.com/johndoe",
+    "gitlab": "https://gitlab.com/johndoe",
+    "linkedin": "https://linkedin.com/in/johndoe",
+    "peertube": "https://example.tube/videos",
+    "email": "mailto:john@example.com"
+  },
+  "colors": {
+    "primary": "#f5c518",
+    "secondary": "#1a1a2e",
+    "accent": "#00b4d8",
+    "background": "#0d0d1a",
+    "surface": "#16213e",
+    "text": "#e0e0e0",
+    "text-muted": "#a0a0b0",
+    "border": "#2a2a4a"
+  },
+  "footer": "© 2026 John Doe. All rights reserved."
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "year": "2018 – 2022",
+    "degree": "Bachelor of Computer Science",
+    "institution": "University of Example",
+    "location": "City, Country",
+    "description": "Focused on software engineering and distributed systems.",
+    "icon": "graduation-cap"
+  },
+  {
+    "year": "2023",
+    "degree": "AWS Certified Solutions Architect – Associate",
+    "institution": "Amazon Web Services",
+    "location": "Online",
+    "description": "Certification covering cloud architecture and deployment.",
+    "icon": "certificate"
+  }
+]

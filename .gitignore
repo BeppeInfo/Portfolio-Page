@@ -4,6 +4,17 @@ public/images/bio/
 public/images/projects/
 public/images/media/
 
+# User-provided config files (runtime overrides)
+# These are mounted at runtime — defaults live in config-defaults/
+config/site.json
+config/bio.json
+config/education.json
+config/experience.json
+config/media.json
+config/strings.en.json
+config/strings.pt.json
+config/strings.es.json
+
 # OS
 .DS_Store
 Thumbs.db

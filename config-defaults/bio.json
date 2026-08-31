@@ -1,0 +1,18 @@
+{
+  "name": "John Doe",
+  "nickname": "johndoe",
+  "headline": "Software Developer & Engineer",
+  "company": "Self-Employed",
+  "avatar": "/images/bio/avatar.webp",
+  "summary": "Software developer with experience building robust web applications and cloud-native infrastructure.",
+  "highlights": [
+    { "icon": "code", "title": "Full Stack", "description": "PHP, JavaScript, Docker, Kubernetes..." },
+    { "icon": "cloud", "title": "Cloud Native", "description": "Kubernetes, CI/CD, Infrastructure as Code..." },
+    { "icon": "terminal", "title": "DevOps", "description": "Automation, monitoring, container orchestration..." }
+  ],
+  "skills": [
+    { "category": "Languages", "items": ["PHP", "JavaScript", "Python", "SQL"] },
+    { "category": "Frameworks", "items": ["Laravel", "Node.js"] },
+    { "category": "Infrastructure", "items": ["Docker", "Kubernetes", "Nginx"] }
+  ]
+}

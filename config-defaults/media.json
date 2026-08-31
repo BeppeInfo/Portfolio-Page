@@ -1,0 +1,36 @@
+{
+  "categories": [
+    { "id": "projects", "label": "nav.media.projects", "icon": "folder" },
+    { "id": "videos",   "label": "nav.media.videos", "icon": "video" }
+  ],
+  "items": [
+    {
+      "id": "sample-project",
+      "type": "image",
+      "category": "projects",
+      "title": "Sample Project",
+      "description": "A sample project to demonstrate the media gallery layout.",
+      "image": "/images/projects/sample.webp",
+      "thumbnail": "/images/projects/sample-thumb.webp",
+      "tags": ["PHP", "Docker"],
+      "links": {
+        "github": "https://github.com/johndoe/sample-project"
+      },
+      "date": "2025-01-01"
+    },
+    {
+      "id": "sample-video",
+      "type": "video",
+      "category": "videos",
+      "title": "Sample Video",
+      "description": "A sample video embed to demonstrate the media player.",
+      "embedUrl": "https://example.tube/videos/embed/sample123",
+      "thumbnail": "/images/media/sample-video-thumb.webp",
+      "tags": ["Demo", "Tutorial"],
+      "links": {
+        "peertube": "https://example.tube/videos/watch/sample123"
+      },
+      "date": "2025-02-01"
+    }
+  ]
+}

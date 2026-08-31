@@ -1,0 +1,30 @@
+[
+  {
+    "period": "2023 – Present",
+    "role": "Software Developer",
+    "company": "Example Corp",
+    "location": "City, Country",
+    "remote": true,
+    "description": "Building web applications and cloud infrastructure.",
+    "achievements": [
+      "Developed REST API serving 10K+ requests/day",
+      "Implemented CI/CD pipeline reducing deployment time by 50%"
+    ],
+    "technologies": ["PHP", "Docker", "Kubernetes", "PostgreSQL"],
+    "link": ""
+  },
+  {
+    "period": "2020 – 2023",
+    "role": "Junior Developer",
+    "company": "Startup Inc.",
+    "location": "City, Country",
+    "remote": false,
+    "description": "Developed web applications using modern technologies.",
+    "achievements": [
+      "Delivered 5 client projects on time",
+      "Introduced automated testing to the team"
+    ],
+    "technologies": ["PHP", "Laravel", "MySQL", "JavaScript"],
+    "link": ""
+  }
+]
