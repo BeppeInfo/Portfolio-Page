@@ -1,0 +1,79 @@
+{
+  "categories": [
+    { "id": "projects", "label": "nav.media.projects", "icon": "folder" },
+    { "id": "videos",   "label": "nav.media.videos", "icon": "video" }
+  ],
+  "items": [
+    {
+      "id": "portfolio-page",
+      "type": "image",
+      "category": "projects",
+      "title": "Portfolio Page",
+      "description": "A lightweight, self-hosted PHP portfolio website with multi-language support and Kubernetes deployment.",
+      "image": "/images/projects/portfolio.webp",
+      "thumbnail": "/images/projects/portfolio-thumb.webp",
+      "tags": ["PHP", "Docker", "Kubernetes", "Nginx"],
+      "links": {
+        "github": "https://github.com/BeppeInfo/Portfolio-Page",
+        "live":   "https://beppeinfo.choppa.xyz"
+      },
+      "date": "2025-08-30"
+    },
+    {
+      "id": "k8s-dashboard",
+      "type": "image",
+      "category": "projects",
+      "title": "Kubernetes Dashboard",
+      "description": "Custom monitoring dashboard for k3s cluster with Prometheus metrics and Grafana visualizations.",
+      "image": "/images/projects/k8s-dashboard.webp",
+      "thumbnail": "/images/projects/k8s-dashboard-thumb.webp",
+      "tags": ["Kubernetes", "Prometheus", "Grafana", "k3s"],
+      "links": {
+        "github": "https://github.com/BeppeInfo/k8s-dashboard"
+      },
+      "date": "2025-06-15"
+    },
+    {
+      "id": "api-gateway",
+      "type": "image",
+      "category": "projects",
+      "title": "API Gateway Service",
+      "description": "Lightweight API gateway with rate limiting, authentication, and request routing for microservices.",
+      "image": "/images/projects/api-gateway.webp",
+      "thumbnail": "/images/projects/api-gateway-thumb.webp",
+      "tags": ["Go", "Docker", "Redis", "Microservices"],
+      "links": {
+        "github": "https://github.com/BeppeInfo/api-gateway"
+      },
+      "date": "2025-03-10"
+    },
+    {
+      "id": "kubernetes-talk",
+      "type": "video",
+      "category": "videos",
+      "title": "Talk: Getting Started with Kubernetes on k3s",
+      "description": "Presentation on setting up and managing a k3s cluster for small to medium workloads.",
+      "embedUrl": "https://tube.choppa.xyz/videos/embed/abc123",
+      "thumbnail": "/images/media/k8s-talk-thumb.webp",
+      "tags": ["Kubernetes", "k3s", "DevOps", "Talk"],
+      "links": {
+        "peertube": "https://tube.choppa.xyz/videos/watch/abc123"
+      },
+      "date": "2025-05-20"
+    },
+    {
+      "id": "docker-demo",
+      "type": "video",
+      "category": "videos",
+      "title": "Demo: Containerizing a PHP Application",
+      "description": "Step-by-step demo of containerizing a PHP application with Docker and deploying to Kubernetes.",
+      "embedUrl": "https://tube.choppa.xyz/videos/embed/def456",
+      "thumbnail": "/images/media/docker-demo-thumb.webp",
+      "tags": ["Docker", "PHP", "Kubernetes", "Demo"],
+      "links": {
+        "peertube": "https://tube.choppa.xyz/videos/watch/def456"
+      },
+      "date": "2025-08-10"
+    }
+  ]
+}

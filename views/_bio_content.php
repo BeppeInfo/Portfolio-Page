@@ -6,8 +6,14 @@
                  loading="eager">
         </div>
         <div class="bio-info">
-            <h1><?= e($bio['name'] ?? 'LeonardoJC') ?></h1>
+            <h1><?= e($bio['name'] ?? 'Leonardo J. Consoni') ?></h1>
+            <?php if (!empty($bio['nickname'])): ?>
+                <span class="bio-nickname">@<?= e($bio['nickname']) ?></span>
+            <?php endif; ?>
             <p class="bio-headline"><?= e(t('bio.headline')) ?></p>
+            <?php if (!empty($bio['company'])): ?>
+                <p class="bio-company"><?= e($bio['company']) ?></p>
+            <?php endif; ?>
             <p class="bio-summary"><?= e($bio['summary'] ?? '') ?></p>
         </div>
     </div>

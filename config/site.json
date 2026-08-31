@@ -1,7 +1,7 @@
 {
-  "title": "LeonardoJC — Portfolio",
+  "title": "Beppe Info — Portfolio",
   "tagline": "Software Developer & Engineer",
-  "description": "Professional portfolio of LeonardoJC",
+  "description": "Professional portfolio of Leonardo J. Consoni (Beppe)," 
   "language": "en",
   "languages": ["en", "pt", "es"],
   "default_language": "en",
@@ -13,10 +13,11 @@
     { "label": "nav.media", "route": "media" }
   ],
   "social": {
-    "github": "https://github.com/leonardojc",
+    "github": "https://github.com/BeppeInfo",
+    "gitlab": "https://gitlab.com/BeppeInfo",
     "linkedin": "https://linkedin.com/in/leonardojc",
     "peertube": "https://tube.choppa.xyz",
-    "email": "mailto:you@example.com"
+    "email": "mailto:beppe.info@protonmail.com"
   },
   "colors": {
     "primary": "#f5c518",
@@ -28,5 +29,5 @@
     "text-muted": "#a0a0b0",
     "border": "#2a2a4a"
   },
-  "footer": "© 2025 LeonardoJC. All rights reserved."
+  "footer": "© 2026 Beppe Info — Leonardo J. Consoni. All rights reserved."
 }

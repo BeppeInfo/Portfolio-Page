@@ -1,7 +1,7 @@
 FROM php:8.2-fpm-alpine
 
-LABEL maintainer="LeonardoJC <you@example.com>"
-LABEL org.opencontainers.image.source="https://github.com/leonardojc/Portfolio-Page"
+LABEL maintainer="Beppe Info <beppe.info@protonmail.com>"
+LABEL org.opencontainers.image.source="https://github.com/BeppeInfo/Portfolio-Page"
 
 # Install Nginx + PHP extensions
 RUN apk add --no-cache \
