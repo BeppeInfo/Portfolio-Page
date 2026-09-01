@@ -118,13 +118,13 @@ kubectl create configmap portfolio-config \
   --from-file=config/strings.en.json \
   --from-file=config/strings.pt.json \
   --from-file=config/strings.es.json \
-  -n choppa
+  -n <your_namespace>
 
 # Apply remaining manifests
-kubectl apply -f k8s/pvc.yaml -n choppa
-kubectl apply -f k8s/deployment.yaml -n choppa
-kubectl apply -f k8s/service.yaml -n choppa
-kubectl apply -f k8s/ingress.yaml -n choppa
+kubectl apply -f k8s/pvc.yaml -n <your_namespace>
+kubectl apply -f k8s/deployment.yaml -n <your_namespace>
+kubectl apply -f k8s/service.yaml -n <your_namespace>
+kubectl apply -f k8s/ingress.yaml -n <your_namespace>
 ```
 
 If you haven't customized `config/` yet, you can use the built-in defaults instead:
@@ -139,7 +139,7 @@ kubectl create configmap portfolio-config \
   --from-file=config-defaults/strings.en.json \
   --from-file=config-defaults/strings.pt.json \
   --from-file=config-defaults/strings.es.json \
-  -n choppa
+  -n <your_namespace>
 ```
 
 The `deployment.yaml` mounts the ConfigMap at `/var/www/html/config`, which overrides the built-in defaults.
@@ -166,7 +166,7 @@ The `deployment.yaml` mounts the ConfigMap at `/var/www/html/config`, which over
     "github": "https://github.com/yourusername",
     "gitlab": "https://gitlab.com/yourusername",
     "linkedin": "https://linkedin.com/in/yourusername",
-    "peertube": "https://your-tube.choppa.xyz",
+    "peertube": "https://your-tube.yourdomain.xyz",
     "email": "mailto:you@example.com"
   },
   "colors": {
@@ -270,11 +270,11 @@ Valid `icon` values: `graduation-cap`, `certificate`, `check`.
       "category": "videos",
       "title": "Video Title",
       "description": "Video description",
-      "embedUrl": "https://tube.choppa.xyz/videos/embed/video-id",
+      "embedUrl": "https://tube.yourdomain.xyz/videos/embed/video-id",
       "thumbnail": "/images/media/video-thumb.webp",
       "tags": ["Demo"],
       "links": {
-        "peertube": "https://tube.choppa.xyz/videos/watch/video-id"
+        "peertube": "https://tube.yourdomain.xyz/videos/watch/video-id"
       },
       "date": "2025-01-01"
     }
@@ -512,13 +512,13 @@ kubectl create configmap portfolio-config \
   --from-file=config/strings.en.json \
   --from-file=config/strings.pt.json \
   --from-file=config/strings.es.json \
-  -n choppa
+  -n <your_namespace>
 
 # Apply remaining manifests
-kubectl apply -f k8s/pvc.yaml -n choppa
-kubectl apply -f k8s/deployment.yaml -n choppa
-kubectl apply -f k8s/service.yaml -n choppa
-kubectl apply -f k8s/ingress.yaml -n choppa
+kubectl apply -f k8s/pvc.yaml -n <your_namespace>
+kubectl apply -f k8s/deployment.yaml -n <your_namespace>
+kubectl apply -f k8s/service.yaml -n <your_namespace>
+kubectl apply -f k8s/ingress.yaml -n <your_namespace>
 ```
 
 **Prerequisites:**
