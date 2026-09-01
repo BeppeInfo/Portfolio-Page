@@ -152,8 +152,7 @@ Portfolio-Page/
 │   ├── deployment.yaml
 │   ├── service.yaml
 │   ├── ingress.yaml
-│   ├── pvc.yaml                  # Persistent volume for media uploads
-│   └── configmap.yaml            # Optional: externalize config
+│   └── pvc.yaml                  # Persistent volume for media uploads
 │
 ├── MEDIA.md                      # Media publishing guide
 │
@@ -972,7 +971,7 @@ All included in `php:8.2-fpm-alpine` base image.
 
 | Component | Status | Details |
 |-----------|--------|---------|
-| Docker image | ✅ Built & pushed | `ancapope/portfolio:latest` — 98.3 MB |
+| Docker image | ✅ Built & pushed | `ancapepe/portfolio:latest` — 98.3 MB |
 | GitHub repo | ✅ Active | `github.com/BeppeInfo/Portfolio-Page` |
 | CI/CD pipeline | ✅ Active | GitHub Actions auto-builds on `main` push |
 | Kubernetes manifests | ✅ Ready | `k8s/` directory, configured for Traefik + cert-manager |

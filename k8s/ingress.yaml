@@ -4,7 +4,6 @@ metadata:
   name: portfolio
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
-    kubernetes.io/ingress.class: traefik
 spec:
   ingressClassName: traefik
   rules:

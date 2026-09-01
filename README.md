@@ -4,7 +4,7 @@
 
 **Author:** Beppe Info  
 **Repo:** [github.com/BeppeInfo/Portfolio-Page](https://github.com/BeppeInfo/Portfolio-Page)  
-**Docker:** [docker.io/ancapope/portfolio](https://hub.docker.com/r/ancapope/portfolio)  
+**Docker:** [docker.io/ancapepe/portfolio](https://hub.docker.com/r/ancapepe/portfolio)  
 
 ---
 
@@ -125,6 +125,21 @@ kubectl apply -f k8s/pvc.yaml -n choppa
 kubectl apply -f k8s/deployment.yaml -n choppa
 kubectl apply -f k8s/service.yaml -n choppa
 kubectl apply -f k8s/ingress.yaml -n choppa
+```
+
+If you haven't customized `config/` yet, you can use the built-in defaults instead:
+
+```bash
+kubectl create configmap portfolio-config \
+  --from-file=config-defaults/site.json \
+  --from-file=config-defaults/bio.json \
+  --from-file=config-defaults/education.json \
+  --from-file=config-defaults/experience.json \
+  --from-file=config-defaults/media.json \
+  --from-file=config-defaults/strings.en.json \
+  --from-file=config-defaults/strings.pt.json \
+  --from-file=config-defaults/strings.es.json \
+  -n choppa
 ```
 
 The `deployment.yaml` mounts the ConfigMap at `/var/www/html/config`, which overrides the built-in defaults.
@@ -381,8 +396,7 @@ Portfolio-Page/
 │   ├── deployment.yaml            # Deployment (1 replica, health probes)
 │   ├── service.yaml               # ClusterIP service
 │   ├── ingress.yaml               # Traefik ingress + cert-manager TLS
-│   ├── pvc.yaml                   # Persistent volume for images
-│   └── configmap.yaml             # ConfigMap with default config
+│   └── pvc.yaml                   # Persistent volume for images
 │
 ├── MEDIA.md                       # Media publishing guide (step-by-step)
 │
@@ -519,7 +533,7 @@ kubectl apply -f k8s/ingress.yaml -n choppa
 
 GitHub Actions automatically builds and pushes the Docker image on every push to `main`:
 
-- **Image:** `ancapope/portfolio:latest` (also tagged with commit SHA)
+- **Image:** `ancapepe/portfolio:latest` (also tagged with commit SHA)
 - **Platform:** `linux/amd64`
 - **Cache:** GitHub Actions cache (`type=gha`)
 
