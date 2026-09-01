@@ -1,3 +1,7 @@
+<?php
+// Capture the page content
+ob_start();
+?>
 <div class="page media-page">
     <h1><?= e(t('media.title')) ?></h1>
 
@@ -111,3 +115,16 @@
         <img src="" alt="" id="imageLightboxImg">
     </div>
 </div>
+<?php
+$content = ob_get_clean();
+
+// Render with layout
+echo render('layout', [
+    'site' => $site,
+    'strings' => $strings,
+    'lang' => $lang,
+    'current_route' => $current_route,
+    'base_url' => $base_url,
+    'content' => $content,
+]);
+?>

@@ -1,3 +1,7 @@
+<?php
+// Capture the page content
+ob_start();
+?>
 <div class="page experience-page">
     <h1><?= e(t('experience.title')) ?></h1>
 
@@ -62,3 +66,16 @@
         <?php endforeach; ?>
     </div>
 </div>
+<?php
+$content = ob_get_clean();
+
+// Render with layout
+echo render('layout', [
+    'site' => $site,
+    'strings' => $strings,
+    'lang' => $lang,
+    'current_route' => $current_route,
+    'base_url' => $base_url,
+    'content' => $content,
+]);
+?>
