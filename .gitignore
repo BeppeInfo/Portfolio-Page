@@ -4,6 +4,9 @@ public/images/bio/
 public/images/projects/
 public/images/media/
 
+# User overrides (runtime)
+public/assets/overrides/
+
 # User-provided config files (runtime overrides)
 # These are mounted at runtime — defaults live in config-defaults/
 config/site.json

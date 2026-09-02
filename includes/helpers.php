@@ -120,7 +120,7 @@ function get_route(): array
     }
 
     if ($uri === '' || $uri === '/') {
-        return ['page' => 'bio', 'type' => null, 'id' => null];
+        return ['page' => 'media', 'type' => null, 'id' => null];
     }
 
     $segments = explode('/', trim($uri, '/'));
@@ -206,4 +206,24 @@ function icon(string $name, array $attrs = []): string
     $svg = preg_replace('/<svg/', '<svg role="img" aria-hidden="true"', $svg, 1);
 
     return $svg;
+}
+
+/**
+ * Get the favicon URL.
+ *
+ * Checks for a user override at public/assets/overrides/favicon.svg,
+ * falls back to the built-in public/assets/favicon.svg.
+ *
+ * @return string Full favicon URL
+ */
+function favicon_url(): string
+{
+    // Check for user override
+    $override = __DIR__ . '/../public/assets/overrides/favicon.svg';
+    if (is_file($override)) {
+        return base_url() . '/assets/overrides/favicon.svg';
+    }
+
+    // Built-in default
+    return base_url() . '/assets/favicon.svg';
 }

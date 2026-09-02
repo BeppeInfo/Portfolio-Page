@@ -6,7 +6,7 @@
     <title><?= e($site['title'] ?? 'Portfolio') ?></title>
     <meta name="description" content="<?= e($site['description'] ?? '') ?>">
     <link rel="stylesheet" href="<?= e(base_url()) ?>/assets/css/style.css">
-    <link rel="icon" type="image/svg+xml" href="<?= e(base_url()) ?>/assets/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="<?= e(favicon_url()) ?>">
 </head>
 <body>
     <nav class="nav" id="nav">
