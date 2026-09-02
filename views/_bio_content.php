@@ -25,14 +25,7 @@
                 <?php foreach ($bio['highlights'] as $h): ?>
                     <div class="highlight-card">
                         <div class="highlight-icon">
-                            <?php
-                            $icons = [
-                                'code'      => '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 4L1.5 12L8.5 20M15.5 4L22.5 12L15.5 20M14 6L10 18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-                                'cloud'     => '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 10h-1.2A4 4 0 0012 6a4 4 0 00-3.8 5.3A3 3 0 0011 17h7a3 3 0 000-6z"/></svg>',
-                                'terminal'  => '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 8l4 4-4 4M13 16h5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-                            ];
-                            echo $icons[$h['icon']] ?? '';
-                            ?>
+                            <?= icon($h['icon']) ?>
                         </div>
                         <h3><?= e($h['title']) ?></h3>
                         <p><?= e($h['description']) ?></p>

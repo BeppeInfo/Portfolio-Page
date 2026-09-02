@@ -167,3 +167,43 @@ function base_url(): string
 
     return $protocol . '://' . $host . $script;
 }
+
+/**
+ * Render an SVG icon from file.
+ *
+ * Usage: icon('github') outputs <svg>...</svg> from public/assets/icons/github.svg
+ *
+ * @param string $name Icon name (without .svg extension)
+ * @param array $attrs Additional HTML attributes (class, style, etc.)
+ * @return string SVG markup or empty string if file not found
+ */
+function icon(string $name, array $attrs = []): string
+{
+    static $cache = [];
+
+    $file = __DIR__ . '/../public/assets/icons/' . $name . '.svg';
+
+    // Simple file cache to avoid repeated disk reads
+    if (isset($cache[$file])) {
+        $svg = $cache[$file];
+    } elseif (is_file($file)) {
+        $svg = file_get_contents($file);
+        $cache[$file] = $svg;
+    } else {
+        return '';
+    }
+
+    if (empty($svg)) {
+        return '';
+    }
+
+    // Add default class
+    if (!preg_match('/\s+class=/', $svg)) {
+        $svg = preg_replace('/<svg/', '<svg class="icon"', $svg, 1);
+    }
+
+    // Add aria attributes for accessibility
+    $svg = preg_replace('/<svg/', '<svg role="img" aria-hidden="true"', $svg, 1);
+
+    return $svg;
+}
