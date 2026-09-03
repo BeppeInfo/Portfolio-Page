@@ -8,6 +8,7 @@ echo render('layout', [
     'strings' => $strings,
     'lang' => $lang,
     'current_route' => $current_route,
+    'current_path' => $current_path,
     'base_url' => $base_url,
     'content' => $content,
 ]);
