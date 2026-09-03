@@ -72,6 +72,11 @@
                         <?= icon('peertube') ?>
                     </a>
                 <?php endif; ?>
+                <?php if (!empty($site['social']['email'])): ?>
+                    <a href="<?= e($site['social']['email']) ?>" rel="noopener" title="Email">
+                        <?= icon('email') ?>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </footer>
