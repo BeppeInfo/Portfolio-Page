@@ -5,7 +5,8 @@ public/images/projects/
 public/images/media/
 
 # User overrides (runtime)
-public/assets/overrides/
+public/assets/overrides/icons/
+public/assets/overrides/favicon.svg
 
 # User-provided config files (runtime overrides)
 # These are mounted at runtime — defaults live in config-defaults/

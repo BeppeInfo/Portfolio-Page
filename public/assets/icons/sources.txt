@@ -1,0 +1,2 @@
+Find some free icons at https://www.svgrepo.com/
+or other site and place them at public/assets/overrides/icons/

@@ -171,7 +171,10 @@ function base_url(): string
 /**
  * Render an SVG icon from file.
  *
- * Usage: icon('github') outputs <svg>...</svg> from public/assets/icons/github.svg
+ * Checks for a user override at public/assets/overrides/icons/<name>.svg,
+ * falls back to the built-in public/assets/icons/<name>.svg.
+ *
+ * Usage: icon('github') outputs <svg>...</svg>
  *
  * @param string $name Icon name (without .svg extension)
  * @param array $attrs Additional HTML attributes (class, style, etc.)
@@ -181,19 +184,28 @@ function icon(string $name, array $attrs = []): string
 {
     static $cache = [];
 
-    $file = __DIR__ . '/../public/assets/icons/' . $name . '.svg';
+    $cacheKey = 'icon/' . $name;
+    if (isset($cache[$cacheKey])) {
+        return $cache[$cacheKey];
+    }
 
-    // Simple file cache to avoid repeated disk reads
-    if (isset($cache[$file])) {
-        $svg = $cache[$file];
-    } elseif (is_file($file)) {
-        $svg = file_get_contents($file);
-        $cache[$file] = $svg;
+    // Check for user override first
+    $override = __DIR__ . '/../public/assets/overrides/icons/' . $name . '.svg';
+    if (is_file($override)) {
+        $svg = file_get_contents($override);
     } else {
-        return '';
+        // Fall back to built-in default
+        $file = __DIR__ . '/../public/assets/icons/' . $name . '.svg';
+        if (is_file($file)) {
+            $svg = file_get_contents($file);
+        } else {
+            $cache[$cacheKey] = '';
+            return '';
+        }
     }
 
     if (empty($svg)) {
+        $cache[$cacheKey] = '';
         return '';
     }
 
@@ -205,6 +217,7 @@ function icon(string $name, array $attrs = []): string
     // Add aria attributes for accessibility
     $svg = preg_replace('/<svg/', '<svg role="img" aria-hidden="true"', $svg, 1);
 
+    $cache[$cacheKey] = $svg;
     return $svg;
 }
 
