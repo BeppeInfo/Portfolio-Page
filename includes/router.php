@@ -23,6 +23,7 @@ function dispatch(): array
         'strings' => $strings,
         'lang' => $lang,
         'current_route' => $route,
+        'current_path' => '/' . $page,
         'base_url' => base_url(),
     ];
 

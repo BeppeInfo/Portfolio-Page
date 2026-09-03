@@ -33,7 +33,7 @@
                 <div class="nav-lang">
                     <?php foreach ($site['languages'] as $code): ?>
                         <?php $active = ($lang === $code) ? ' active' : ''; ?>
-                        <a href="<?= e(base_url()) ?>/?lang=<?= e($code) ?>"
+                        <a href="<?= e(base_url()) ?><?= e($current_path) ?>?lang=<?= e($code) ?>"
                            class="lang-btn<?= e($active) ?>"
                            title="<?= e($code) ?>">
                             <?= e(strtoupper($code)) ?>
