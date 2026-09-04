@@ -240,3 +240,75 @@ function favicon_url(): string
     // Built-in default
     return base_url() . '/assets/favicon.svg';
 }
+
+/**
+ * Detect video platform and return embed URL.
+ *
+ * Supports Peertube, YouTube, Odysee, and generic fallback.
+ * If an explicit embedUrl is provided in the config, it is used as-is.
+ *
+ * @param array $item Media item with 'links' and optional 'embedUrl'
+ * @return array ['embedUrl' => string, 'platform' => string]
+ */
+function video_embed_url(array $item): array
+{
+    // If embedUrl is explicitly set, use it directly
+    if (!empty($item['embedUrl'])) {
+        return ['embedUrl' => $item['embedUrl'], 'platform' => 'generic'];
+    }
+
+    $link = $item['links']['live'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
+
+    if (empty($link)) {
+        return ['embedUrl' => '', 'platform' => 'none'];
+    }
+
+    // Peertube: /videos/watch/xxx → /videos/embed/xxx
+    if (preg_match('/peertube/i', $link)) {
+        $embedUrl = preg_replace('/\/videos\/watch\//', '/videos/embed/', $link);
+        return ['embedUrl' => $embedUrl, 'platform' => 'peertube'];
+    }
+
+    // YouTube: /watch?v=xxx → /embed/xxx
+    if (preg_match('/youtube\.com|youtu\.be/i', $link)) {
+        $videoId = '';
+        if (preg_match('/v=([^&\s]+)/', $link, $matches)) {
+            $videoId = $matches[1];
+        } elseif (preg_match('/youtu\.be\/([^\s?]+)/', $link, $matches)) {
+            $videoId = $matches[1];
+        }
+        if ($videoId) {
+            return ['embedUrl' => 'https://www.youtube.com/embed/' . $videoId, 'platform' => 'youtube'];
+        }
+    }
+
+    // Odysee: /$/embed/xxx
+    if (preg_match('/odysee\.com/i', $link)) {
+        // Odysee URL: https://odysee.com/@user:post:xxx → https://odysee.com/$/embed/xxx
+        $embedUrl = preg_replace('/([^\/]+\/[^\/]+\/[^\/]+)\/?$/', '$1/embed', $link);
+        return ['embedUrl' => $embedUrl, 'platform' => 'odysee'];
+    }
+
+    // Generic fallback — no embed available
+    return ['embedUrl' => '', 'platform' => 'generic'];
+}
+
+/**
+ * Get the platform icon name for a video link.
+ *
+ * @param string $link Video link URL
+ * @return string Icon name
+ */
+function video_platform_icon(string $link): string
+{
+    if (preg_match('/peertube/i', $link)) {
+        return 'peertube';
+    }
+    if (preg_match('/youtube\.com|youtu\.be/i', $link)) {
+        return 'youtube';
+    }
+    if (preg_match('/odysee\.com/i', $link)) {
+        return 'odysee';
+    }
+    return 'video';
+}

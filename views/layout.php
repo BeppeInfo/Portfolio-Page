@@ -77,6 +77,16 @@
                         <?= icon('email') ?>
                     </a>
                 <?php endif; ?>
+                <?php if (!empty($site['social']['x'])): ?>
+                    <a href="<?= e($site['social']['x']) ?>" target="_blank" rel="noopener" title="X (Twitter)">
+                        <?= icon('x') ?>
+                    </a>
+                <?php endif; ?>
+                <?php if (!empty($site['social']['fediverse'])): ?>
+                    <a href="<?= e($site['social']['fediverse']) ?>" target="_blank" rel="noopener" title="Fediverse">
+                        <?= icon('fediverse') ?>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </footer>

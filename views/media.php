@@ -44,11 +44,15 @@ ob_start();
             <?php if (!isset($categories[$catId])) continue; ?>
             <div class="media-category" data-category="<?= e($catId) ?>">
                 <?php foreach ($categories[$catId] as $item): ?>
+                    <?php
+                    $videoInfo = $item['type'] === 'video' ? video_embed_url($item) : null;
+                    $platformIcon = $videoInfo ? video_platform_icon($item['links']['live'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '') : '';
+                    ?>
                     <div class="media-card" data-type="<?= e($item['type']) ?>">
                         <?php if ($item['type'] === 'video'): ?>
                             <div class="video-placeholder"
-                                 data-embed-url="<?= e($item['embedUrl'] ?? '') ?>"
-                                 data-peertube-link="<?= e($item['links']['peertube'] ?? '') ?>">
+                                 data-embed-url="<?= e($videoInfo['embedUrl'] ?? '') ?>"
+                                 data-platform="<?= e($videoInfo['platform'] ?? '') ?>">
                                 <img src="<?= e($item['thumbnail'] ?? '') ?>"
                                      alt="<?= e($item['title']) ?>"
                                      loading="lazy">
@@ -85,10 +89,17 @@ ob_start();
                                         GitHub
                                     </a>
                                 <?php endif; ?>
-                                <?php if (!empty($item['links']['live']) || !empty($item['links']['peertube'])): ?>
-                                    <a href="<?= e($item['links']['live'] ?? $item['links']['peertube']) ?>" target="_blank" rel="noopener" title="<?= e(t('media.view_on_peertube')) ?>">
-                                        <?= icon('peertube') ?>
-                                        <?= e(t('media.view_on_peertube')) ?>
+                                <?php if (!empty($item['links']['live']) || !empty($item['links']['peertube']) || !empty($item['links']['youtube']) || !empty($item['links']['odysee'])): ?>
+                                    <?php
+                                    $videoLink = $item['links']['live'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
+                                    $videoPlatform = $videoInfo ? $videoInfo['platform'] : 'none';
+                                    $iconName = $videoPlatform === 'youtube' ? 'youtube' : ($videoPlatform === 'odysee' ? 'odysee' : 'peertube');
+                                    $labelKey = $videoPlatform === 'youtube' ? 'media.view_on_youtube' : ($videoPlatform === 'odysee' ? 'media.view_on_odysee' : 'media.view_on_peertube');
+                                    $label = $videoPlatform === 'none' ? t('media.view_on_video') : t($labelKey);
+                                    ?>
+                                    <a href="<?= e($videoLink) ?>" target="_blank" rel="noopener" title="<?= e($label) ?>">
+                                        <?= icon($iconName) ?>
+                                        <?= e($label) ?>
                                     </a>
                                 <?php endif; ?>
                             </div>
