@@ -93,7 +93,7 @@ ob_start();
                                     <?php
                                     $videoLink = $item['links']['live'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
                                     $videoPlatform = $videoInfo ? $videoInfo['platform'] : 'none';
-                                    $iconName = $videoPlatform === 'youtube' ? 'youtube' : ($videoPlatform === 'odysee' ? 'odysee' : 'peertube');
+                                    $iconName = $videoPlatform === 'youtube' ? 'youtube' : ($videoPlatform === 'odysee' ? 'odysee' : ($videoPlatform === 'peertube' ? 'peertube' : 'video'));
                                     $labelKey = $videoPlatform === 'youtube' ? 'media.view_on_youtube' : ($videoPlatform === 'odysee' ? 'media.view_on_odysee' : 'media.view_on_peertube');
                                     $label = $videoPlatform === 'none' ? t('media.view_on_video') : t($labelKey);
                                     ?>
