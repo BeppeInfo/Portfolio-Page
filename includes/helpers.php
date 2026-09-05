@@ -209,6 +209,10 @@ function icon(string $name, array $attrs = []): string
         return '';
     }
 
+    // Remove hardcoded fill/stroke so SVG inherits CSS color
+    $svg = preg_replace('/\s+fill="[^"]*"/', '', $svg);
+    $svg = preg_replace('/\s+stroke="[^"]*"/', '', $svg);
+
     // Add default class
     if (!preg_match('/\s+class=/', $svg)) {
         $svg = preg_replace('/<svg/', '<svg class="icon"', $svg, 1);

@@ -46,7 +46,8 @@ ob_start();
                 <?php foreach ($categories[$catId] as $item): ?>
                     <?php
                     $videoInfo = $item['type'] === 'video' ? video_embed_url($item) : null;
-                    $platformIcon = $videoInfo ? video_platform_icon($item['links']['live'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '') : '';
+                    $videoLink = $item['links']['live'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
+                    $platformIcon = $videoInfo ? video_platform_icon($videoLink) : '';
                     ?>
                     <div class="media-card" data-type="<?= e($item['type']) ?>">
                         <?php if ($item['type'] === 'video'): ?>
@@ -89,21 +90,12 @@ ob_start();
                                         GitHub
                                     </a>
                                 <?php endif; ?>
-                                <?php if (!empty($item['links']['live']) || !empty($item['links']['peertube']) || !empty($item['links']['youtube']) || !empty($item['links']['odysee'])): ?>
+                                <?php if ($videoInfo !== null): ?>
                                     <?php
-                                    $videoLink = $item['links']['live'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
-                                    $videoPlatform = $videoInfo ? $videoInfo['platform'] : 'none';
-                                    $iconName = match ($videoPlatform) {
-                                        'youtube' => 'youtube',
-                                        'odysee' => 'odysee',
-                                        'peertube' => 'peertube',
-                                        default => video_platform_icon($videoLink),
-                                    };
-                                    $labelKey = $videoPlatform === 'youtube' ? 'Youtube' : ($videoPlatform === 'odysee' ? 'Odysee' : 'Peertube');
-                                    $label = $videoPlatform === 'none' ? t('media.view_original') : t('media.view_on') . ' ' . $labelKey;
+                                    $label = $videoInfo['platform'] === 'generic' ? t('media.view_original') : t('media.view_on') . ' ' . ucfirst($platformIcon);
                                     ?>
                                     <a href="<?= e($videoLink) ?>" target="_blank" rel="noopener" title="<?= e($label) ?>">
-                                        <?= icon($iconName) ?>
+                                        <?= icon($platformIcon) ?>
                                         <?= e($label) ?>
                                     </a>
                                 <?php endif; ?>
