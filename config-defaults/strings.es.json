@@ -31,7 +31,10 @@
     "projects": "Proyectos",
     "gallery": "Galería",
     "videos": "Videos",
-    "view_on_peertube": "Ver en Peertube",
+    "view_on": "Ver en",
+    "view_source_code": "Ver código fuente",
+    "view_original": "Ver original",
+    "view_website": "Ver sitio web",
     "play": "Reproducir"
   },
   "common": {

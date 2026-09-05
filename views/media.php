@@ -45,12 +45,18 @@ ob_start();
             <div class="media-category" data-category="<?= e($catId) ?>">
                 <?php foreach ($categories[$catId] as $item): ?>
                     <?php
-                    $videoInfo = $item['type'] === 'video' ? video_embed_url($item) : null;
-                    $videoLink = $item['links']['video'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
-                    $platformIcon = $videoInfo ? video_platform_icon($videoLink) : '';
+                    $videoInfo = $item['type'] === 'video' ? video_platform_url($item) : null;
+                    $videoLink = $videoInfo ? $videoInfo['url'] : '';
+                    $videoPlatform = $videoInfo ? $videoInfo['platform'] : '';
+                    $videoIcon = $videoInfo ? $videoInfo['icon'] : '';
+                    $repoInfo = repo_platform_url($item);
+                    $repoLink = $repoInfo['url'];
+                    $repoPlatform = $repoInfo['platform'];
+                    $repoIcon = $repoInfo['icon'];
+                    $siteLink = $item['links']['website'] ?? '';
                     ?>
                     <div class="media-card" data-type="<?= e($item['type']) ?>">
-                        <?php if ($item['type'] === 'video'): ?>
+                        <?php if (!empty($videoInfo['embedUrl'] ?? '')): ?>
                             <div class="video-placeholder"
                                  data-embed-url="<?= e($videoInfo['embedUrl'] ?? '') ?>"
                                  data-platform="<?= e($videoInfo['platform'] ?? '') ?>">
@@ -84,19 +90,31 @@ ob_start();
                             <?php endif; ?>
 
                             <div class="media-links">
-                                <?php if (!empty($item['links']['github'])): ?>
-                                    <a href="<?= e($item['links']['github']) ?>" target="_blank" rel="noopener" title="GitHub">
-                                        <?= icon('github') ?>
-                                        GitHub
+                                <?php if (!empty($repoLink)): ?>
+                                    <?php
+                                    $repoLabel = $repoPlatform === 'generic' ? t('media.view_source_code') : t('media.view_on') . ' ' . $repoPlatform;
+                                    ?>
+                                    <a href="<?= e($repoLink) ?>" target="_blank" rel="noopener" title="<?= e($repoLabel) ?>">
+                                        <?= icon($repoIcon) ?>
+                                        <?= e($repoLabel) ?>
                                     </a>
                                 <?php endif; ?>
-                                <?php if ($videoInfo !== null): ?>
+                                <?php if (!empty($videoLink)): ?>
                                     <?php
-                                    $label = $videoInfo['platform'] === 'generic' ? t('media.view_original') : t('media.view_on') . ' ' . video_platform_label($videoInfo['platform']);
+                                    $videoLabel = $videoPlatform === 'generic' ? t('media.view_original') : t('media.view_on') . ' ' . $videoPlatform;
                                     ?>
-                                    <a href="<?= e($videoLink) ?>" target="_blank" rel="noopener" title="<?= e($label) ?>">
-                                        <?= icon($platformIcon) ?>
-                                        <?= e($label) ?>
+                                    <a href="<?= e($videoLink) ?>" target="_blank" rel="noopener" title="<?= e($videoLabel) ?>">
+                                        <?= icon($videoIcon) ?>
+                                        <?= e($videoLabel) ?>
+                                    </a>
+                                <?php endif; ?>
+                                <?php if (!empty($siteLink)): ?>
+                                    <?php                                                                                                                                                                      
+                                    $siteLabel = t('media.view_website');                                                                                                                                      
+                                    ?>                                                                                                                                                                         
+                                    <a href="<?= e($siteLink) ?>" target="_blank" rel="noopener" title="<?= e($siteLabel) ?>">
+                                        <?= icon('website') ?>
+                                        <?= e($siteLabel) ?>
                                     </a>
                                 <?php endif; ?>
                             </div>

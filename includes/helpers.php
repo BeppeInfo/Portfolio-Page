@@ -246,31 +246,27 @@ function favicon_url(): string
 }
 
 /**
- * Detect video platform and return embed URL.
+ * Detect video platform + URL + icon info.
  *
  * Supports Peertube, YouTube, Odysee, and generic fallback.
- * If an explicit embedUrl is provided in the config, it is used as-is.
  *
- * @param array $item Media item with 'links' and optional 'embedUrl'
- * @return array ['embedUrl' => string, 'platform' => string]
+ * @param array $item Media item with 'links'
+ * @return array ['url' => string, 'embedUrl' => string, 'platform' => string, 'label' => string]
  */
-function video_embed_url(array $item): array
+function video_platform_url(array $item): array
 {
-    // If embedUrl is explicitly set, use it directly
-    if (!empty($item['embedUrl'])) {
-        return ['embedUrl' => $item['embedUrl'], 'platform' => 'generic'];
-    }
-
-    $link = $item['links']['video'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
+    $link = $item['links']['video'] ?? '';
 
     if (empty($link)) {
-        return ['embedUrl' => '', 'platform' => 'none'];
+        return ['url' => '', 'embedUrl' => '', 'platform' => 'none', 'icon' => ''];
     }
 
-    // Peertube: /videos/watch/xxx → /videos/embed/xxx
+    // Peertube: peertube://.../w/xxx or .../videos/watch/xxx → https://.../videos/embed/xxx
     if (preg_match('/peertube/i', $link)) {
+        $link = preg_replace('/peertube:/', 'https:', $link);
         $embedUrl = preg_replace('/\/videos\/watch\//', '/videos/embed/', $link);
-        return ['embedUrl' => $embedUrl, 'platform' => 'peertube'];
+        $embedUrl = preg_replace('/\/w\//', '/videos/embed/', $embedUrl);
+        return ['url' => $link, 'embedUrl' => $embedUrl, 'platform' => 'Peertube', 'icon' => 'peertube'];
     }
 
     // YouTube: /watch?v=xxx → /embed/xxx
@@ -282,7 +278,7 @@ function video_embed_url(array $item): array
             $videoId = $matches[1];
         }
         if ($videoId) {
-            return ['embedUrl' => 'https://www.youtube.com/embed/' . $videoId, 'platform' => 'youtube'];
+            return ['url' => $link, 'embedUrl' => 'https://www.youtube.com/embed/' . $videoId, 'platform' => 'YouTube', 'icon' => 'youtube'];
         }
     }
 
@@ -290,45 +286,44 @@ function video_embed_url(array $item): array
     if (preg_match('/odysee\.com/i', $link)) {
         // Odysee URL: https://odysee.com/@user:post:xxx → https://odysee.com/$/embed/xxx
         $embedUrl = preg_replace('/([^\/]+\/[^\/]+\/[^\/]+)\/?$/', '$1/embed', $link);
-        return ['embedUrl' => $embedUrl, 'platform' => 'odysee'];
+        return ['url' => $link, 'embedUrl' => $embedUrl, 'platform' => 'Odysee', 'icon' => 'odysee'];
     }
 
     // Generic fallback — no embed available
-    return ['embedUrl' => '', 'platform' => 'generic'];
+    return ['url' => $link, 'embedUrl' => '', 'platform' => 'generic', 'icon' => 'video'];
 }
 
 /**
- * Get the platform icon name for a video link.
+ * Detect code repository platform and return URL + icon info.
  *
- * @param string $link Video link URL
- * @return string Icon name
+ * Supports GitHub, GitLab, Bitbucket, and generic code repositories.
+ *
+ * @param array $item Media item with 'links'
+ * @return array ['url' => string, 'platform' => string, 'icon' => string]
  */
-function video_platform_icon(string $link): string
+function repo_platform_url(array $item): array
 {
-    if (preg_match('/peertube/i', $link)) {
-        return 'peertube';
+    $link = $item['links']['code'] ?? '';
+    
+    if (empty($link)) {
+        return ['url' => '', 'platform' => 'none', 'icon' => ''];
     }
-    if (preg_match('/youtube\.com|youtu\.be/i', $link)) {
-        return 'youtube';
-    }
-    if (preg_match('/odysee\.com/i', $link)) {
-        return 'odysee';
-    }
-    return 'video';
-}
 
-/**
- * Get the platform label key for a video link.
- *
- * @param string $platform Detected platform
- * @return string Translation key
- */
-function video_platform_label(string $platform): string
-{
-    return match ($platform) {
-        'youtube' => 'Youtube',
-        'odysee' => 'Odysee',
-        'peertube' => 'Peertube',
-        default => 'Video',
-    };
+    // GitHub
+    if (preg_match('/github\.com/i', $link)) {
+        return ['url' => $link, 'platform' => 'GitHub', 'icon' => 'github'];
+    }
+
+    // GitLab
+    if (preg_match('/gitlab\.com/i', $link)) {
+        return ['url' => $link, 'platform' => 'GitLab', 'icon' => 'gitlab'];
+    }
+
+    // Bitbucket
+    if (preg_match('/bitbucket\.org/i', $link)) {
+        return ['url' => $link, 'platform' => 'Bitbucket', 'icon' => 'bitbucket'];
+    }
+
+    // Generic code repository (e.g., self-hosted GitLab, Gitea, Codeberg, etc.)
+    return ['url' => $link, 'platform' => 'generic', 'icon' => 'repo'];
 }
