@@ -210,8 +210,8 @@ function icon(string $name, array $attrs = []): string
     }
 
     // Remove hardcoded fill/stroke so SVG inherits CSS color
-    $svg = preg_replace('/\s+fill="[^"]*"/', '', $svg);
-    $svg = preg_replace('/\s+stroke="[^"]*"/', '', $svg);
+    // $svg = preg_replace('/\s+fill="[^"]*"/', '', $svg);
+    // $svg = preg_replace('/\s+stroke="[^"]*"/', '', $svg);
 
     // Add default class
     if (!preg_match('/\s+class=/', $svg)) {
@@ -261,7 +261,7 @@ function video_embed_url(array $item): array
         return ['embedUrl' => $item['embedUrl'], 'platform' => 'generic'];
     }
 
-    $link = $item['links']['live'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
+    $link = $item['links']['video'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
 
     if (empty($link)) {
         return ['embedUrl' => '', 'platform' => 'none'];
@@ -315,4 +315,20 @@ function video_platform_icon(string $link): string
         return 'odysee';
     }
     return 'video';
+}
+
+/**
+ * Get the platform label key for a video link.
+ *
+ * @param string $platform Detected platform
+ * @return string Translation key
+ */
+function video_platform_label(string $platform): string
+{
+    return match ($platform) {
+        'youtube' => 'Youtube',
+        'odysee' => 'Odysee',
+        'peertube' => 'Peertube',
+        default => 'Video',
+    };
 }

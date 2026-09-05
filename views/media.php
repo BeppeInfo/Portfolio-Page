@@ -46,7 +46,7 @@ ob_start();
                 <?php foreach ($categories[$catId] as $item): ?>
                     <?php
                     $videoInfo = $item['type'] === 'video' ? video_embed_url($item) : null;
-                    $videoLink = $item['links']['live'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
+                    $videoLink = $item['links']['video'] ?? $item['links']['peertube'] ?? $item['links']['youtube'] ?? $item['links']['odysee'] ?? '';
                     $platformIcon = $videoInfo ? video_platform_icon($videoLink) : '';
                     ?>
                     <div class="media-card" data-type="<?= e($item['type']) ?>">
@@ -92,7 +92,7 @@ ob_start();
                                 <?php endif; ?>
                                 <?php if ($videoInfo !== null): ?>
                                     <?php
-                                    $label = $videoInfo['platform'] === 'generic' ? t('media.view_original') : t('media.view_on') . ' ' . ucfirst($platformIcon);
+                                    $label = $videoInfo['platform'] === 'generic' ? t('media.view_original') : t('media.view_on') . ' ' . video_platform_label($videoInfo['platform']);
                                     ?>
                                     <a href="<?= e($videoLink) ?>" target="_blank" rel="noopener" title="<?= e($label) ?>">
                                         <?= icon($platformIcon) ?>
