@@ -246,14 +246,14 @@ function favicon_url(): string
 }
 
 /**
- * Detect video platform + URL + icon info.
+ * Detect video platform + URLs + icon info.
  *
  * Supports Peertube, YouTube, Odysee, and generic fallback.
  *
  * @param array $item Media item with 'links'
  * @return array ['url' => string, 'embedUrl' => string, 'platform' => string, 'label' => string]
  */
-function video_platform_url(array $item): array
+function video_info(array $item): array
 {
     $link = $item['links']['video'] ?? '';
 
@@ -294,14 +294,14 @@ function video_platform_url(array $item): array
 }
 
 /**
- * Detect code repository platform and return URL + icon info.
+ * Detect code repository platform and return URL + platform + icon info.
  *
  * Supports GitHub, GitLab, Bitbucket, and generic code repositories.
  *
  * @param array $item Media item with 'links'
  * @return array ['url' => string, 'platform' => string, 'icon' => string]
  */
-function repo_platform_url(array $item): array
+function repo_info(array $item): array
 {
     $link = $item['links']['code'] ?? '';
     
@@ -326,4 +326,19 @@ function repo_platform_url(array $item): array
 
     // Generic code repository (e.g., self-hosted GitLab, Gitea, Codeberg, etc.)
     return ['url' => $link, 'platform' => 'generic', 'icon' => 'repo'];
+}
+
+function doc_url(array $item): string
+{
+    $link = $item['links']['document'] ?? '';
+    
+    if (empty($link)) {
+        return '';
+    }
+
+    if (str_ends_with($link, '.pdf')) {
+        return $link;
+    }
+
+    return '';
 }

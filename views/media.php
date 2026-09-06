@@ -45,17 +45,18 @@ ob_start();
             <div class="media-category" data-category="<?= e($catId) ?>">
                 <?php foreach ($categories[$catId] as $item): ?>
                     <?php
-                    $videoInfo = $item['type'] === 'video' ? video_platform_url($item) : null;
+                    $videoInfo = video_info($item);
                     $videoLink = $videoInfo ? $videoInfo['url'] : '';
                     $videoPlatform = $videoInfo ? $videoInfo['platform'] : '';
                     $videoIcon = $videoInfo ? $videoInfo['icon'] : '';
-                    $repoInfo = repo_platform_url($item);
+                    $repoInfo = repo_info($item);
                     $repoLink = $repoInfo['url'];
                     $repoPlatform = $repoInfo['platform'];
                     $repoIcon = $repoInfo['icon'];
+                    $docLink = doc_url($item);
                     $siteLink = $item['links']['website'] ?? '';
                     ?>
-                    <div class="media-card" data-type="<?= e($item['type']) ?>">
+                    <div class="media-card">
                         <?php if (!empty($videoInfo['embedUrl'] ?? '')): ?>
                             <div class="video-placeholder"
                                  data-embed-url="<?= e($videoInfo['embedUrl'] ?? '') ?>"
@@ -68,7 +69,7 @@ ob_start();
                                 </div>
                             </div>
                         <?php else: ?>
-                            <a href="<?= e($item['image'] ?? '') ?>" class="media-image-link">
+                            <a href="<?= e($item['thumbnail'] ?? '') ?>" class="media-image-link">
                                 <img src="<?= e($item['thumbnail'] ?? '') ?>"
                                      alt="<?= e($item['title']) ?>"
                                      loading="lazy">
@@ -106,6 +107,15 @@ ob_start();
                                     <a href="<?= e($videoLink) ?>" target="_blank" rel="noopener" title="<?= e($videoLabel) ?>">
                                         <?= icon($videoIcon) ?>
                                         <?= e($videoLabel) ?>
+                                    </a>
+                                <?php endif; ?>
+                                <?php if (!empty($docLink)): ?>
+                                    <?php                                                                                                                                                                      
+                                    $docLabel = t('media.view_document');                                                                                                                                      
+                                    ?>                                                                                                                                                                         
+                                    <a href="<?= e($docLink) ?>" target="_blank" rel="noopener" title="<?= e($docLabel) ?>">
+                                        <?= icon('document') ?>
+                                        <?= e($docLabel) ?>
                                     </a>
                                 <?php endif; ?>
                                 <?php if (!empty($siteLink)): ?>
