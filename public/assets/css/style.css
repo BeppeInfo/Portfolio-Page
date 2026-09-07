@@ -564,6 +564,10 @@ img {
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
+  .media-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .nav-toggle {
     display: block;
     order: 3;
@@ -648,12 +652,21 @@ img {
   .page-404 h1 {
     font-size: 3rem;
   }
+
+  .media-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ===== Media Page ===== */
+.media-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .media-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
