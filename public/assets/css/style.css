@@ -651,44 +651,7 @@ img {
 }
 
 /* ===== Media Page ===== */
-.media-tabs {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.media-tab {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--radius);
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: var(--font-sans);
-}
-
-.media-tab:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
-.media-tab.active {
-  background: var(--color-primary);
-  color: var(--color-bg);
-  border-color: var(--color-primary);
-}
-
 .media-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.media-category {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;

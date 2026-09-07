@@ -45,29 +45,6 @@
     }
   });
 
-  // ===== Media category tabs =====
-  const mediaTabs = document.querySelectorAll('.media-tab');
-  const mediaCategories = document.querySelectorAll('.media-category');
-
-  mediaTabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      const category = this.getAttribute('data-category');
-
-      // Update active tab
-      mediaTabs.forEach(function (t) { t.classList.remove('active'); });
-      this.classList.add('active');
-
-      // Show/hide categories
-      mediaCategories.forEach(function (cat) {
-        if (cat.getAttribute('data-category') === category) {
-          cat.style.display = 'grid';
-        } else {
-          cat.style.display = 'none';
-        }
-      });
-    });
-  });
-
   // ===== Video lightbox (lazy-load Peertube embeds) =====
   const videoLightbox = document.getElementById('videoLightbox');
   const videoLightboxClose = document.getElementById('videoLightboxClose');

@@ -1,13 +1,8 @@
 {
-  "categories": [
-    { "id": "projects", "label": "nav.media.projects", "icon": "folder" },
-    { "id": "videos",   "label": "nav.media.videos", "icon": "video" }
-  ],
   "items": [
     {
       "id": "sample-project",
       "type": "image",
-      "category": "projects",
       "title": "Sample Project",
       "description": "A sample project to demonstrate the media gallery layout.",
       "image": "/images/projects/sample.webp",
@@ -22,7 +17,6 @@
     {
       "id": "sample-video",
       "type": "video",
-      "category": "videos",
       "title": "Sample Video",
       "description": "A sample video embed to demonstrate the media player.",
       "thumbnail": "/images/media/sample-video-thumb.webp",
