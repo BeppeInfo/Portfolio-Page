@@ -16,7 +16,7 @@ ob_start();
                 <div class="timeline-content">
                     <div class="timeline-header">
                         <span class="timeline-year"><?= e($item['period']) ?></span>
-                        <h3><?= e($item['role']) ?></h3>
+                        <h3><?= e(trans($item['role'], $lang)) ?></h3>
                         <?php if (!empty($item['company'])): ?>
                             <?php if (!empty($item['link'])): ?>
                                 <a href="<?= e($item['link']) ?>" target="_blank" rel="noopener" class="timeline-company"><?= e($item['company']) ?></a>
@@ -36,7 +36,7 @@ ob_start();
                         <?php endif; ?>
 
                         <?php if (!empty($item['description'])): ?>
-                            <p class="timeline-description"><?= e($item['description']) ?></p>
+                            <p class="timeline-description"><?= e(trans($item['description'], $lang)) ?></p>
                         <?php endif; ?>
 
                         <?php if (!empty($item['achievements'])): ?>

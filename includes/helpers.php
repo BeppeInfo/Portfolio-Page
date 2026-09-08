@@ -146,13 +146,19 @@ function e(string $str): string
  * Translate a multi-language field (e.g. {"en":"...","pt":"...","es":"..."}).
  *
  * Falls back to 'en' if the current language key is missing.
+ * Defaults to site default_language if $lang is null.
  *
  * @param array|string $value An associative array with language codes as keys, or a plain string
- * @param string $lang Current language code
+ * @param string|null $lang Current language code (optional, auto-resolved from config if null)
  * @return string Resolved string
  */
-function trans(array|string $value, string $lang): string
+function trans(array|string $value, ?string $lang = null): string
 {
+    if ($lang === null) {
+        $site = load_config('site');
+        $lang = $site['default_language'] ?? 'en';
+    }
+
     if (!is_array($value)) {
         return (string) $value;
     }

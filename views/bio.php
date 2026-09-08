@@ -2,6 +2,7 @@
 $content = render('_bio_content', [
     'bio' => $bio,
     'strings' => $strings,
+    'lang' => $lang,
 ]);
 echo render('layout', [
     'site' => $site,
