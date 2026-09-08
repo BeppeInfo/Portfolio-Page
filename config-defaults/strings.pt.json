@@ -5,12 +5,6 @@
     "experience": "Experiência",
     "media": "Mídia"
   },
-  "bio": {
-    "headline": "Desenvolvedor de Software & Engenheiro",
-    "summary": "Desenvolvedor de software com experiência na construção de aplicações web robustas e infraestrutura cloud-native.",
-    "skills_title": "Habilidades",
-    "highlights_title": "O Que Faço"
-  },
   "education": {
     "title": "Formação",
     "degree": "Grau",
@@ -46,6 +40,5 @@
     "language": "Idioma",
     "not_found": "Página não encontrada",
     "go_home": "Ir para início"
-  },
-  "footer": "© 2026 John Doe. Todos os direitos reservados."
+  }
 }

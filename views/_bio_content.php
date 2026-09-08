@@ -10,17 +10,17 @@
             <?php if (!empty($bio['nickname'])): ?>
                 <span class="bio-nickname">@<?= e($bio['nickname']) ?></span>
             <?php endif; ?>
-            <p class="bio-headline"><?= e(t('bio.headline')) ?></p>
+            <p class="bio-headline"><?= e(trans($bio['headline'], $lang)) ?></p>
             <?php if (!empty($bio['company'])): ?>
                 <p class="bio-company"><?= e($bio['company']) ?></p>
             <?php endif; ?>
-            <p class="bio-summary"><?= e($bio['summary'] ?? '') ?></p>
+            <p class="bio-summary"><?= e(trans($bio['summary'], $lang)) ?></p>
         </div>
     </div>
 
     <?php if (!empty($bio['highlights'])): ?>
         <section class="bio-section">
-            <h2><?= e(t('bio.highlights_title')) ?></h2>
+            <h2><?= e(trans($bio['highlights_title'], $lang)) ?></h2>
             <div class="highlights-grid">
                 <?php foreach ($bio['highlights'] as $h): ?>
                     <div class="highlight-card">
@@ -37,7 +37,7 @@
 
     <?php if (!empty($bio['skills'])): ?>
         <section class="bio-section">
-            <h2><?= e(t('bio.skills_title')) ?></h2>
+            <h2><?= e(trans($bio['skills_title'], $lang)) ?></h2>
             <div class="skills-grid">
                 <?php foreach ($bio['skills'] as $skill): ?>
                     <div class="skill-category">

@@ -143,6 +143,33 @@ function e(string $str): string
 }
 
 /**
+ * Translate a multi-language field (e.g. {"en":"...","pt":"...","es":"..."}).
+ *
+ * Falls back to 'en' if the current language key is missing.
+ *
+ * @param array|string $value An associative array with language codes as keys, or a plain string
+ * @param string $lang Current language code
+ * @return string Resolved string
+ */
+function trans(array|string $value, string $lang): string
+{
+    if (!is_array($value)) {
+        return (string) $value;
+    }
+
+    // Try current language first, then fall back to 'en', then first available
+    $fallbacks = [$lang, 'en'];
+    foreach ($fallbacks as $fallback) {
+        if (isset($value[$fallback])) {
+            return (string) $value[$fallback];
+        }
+    }
+
+    // Last resort: first available value
+    return (string) reset($value);
+}
+
+/**
  * Get the base URL of the application.
  *
  * @return string Base URL

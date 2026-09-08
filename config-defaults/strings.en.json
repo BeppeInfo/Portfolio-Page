@@ -5,12 +5,6 @@
     "experience": "Experience",
     "media": "Media"
   },
-  "bio": {
-    "headline": "Software Developer & Engineer",
-    "summary": "Software developer with experience building robust web applications and cloud-native infrastructure.",
-    "skills_title": "Skills",
-    "highlights_title": "What I Do"
-  },
   "education": {
     "title": "Education",
     "degree": "Degree",
@@ -46,6 +40,5 @@
     "language": "Language",
     "not_found": "Page not found",
     "go_home": "Go home"
-  },
-  "footer": "© 2026 John Doe. All rights reserved."
+  }
 }
