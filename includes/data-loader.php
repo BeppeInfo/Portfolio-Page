@@ -11,10 +11,16 @@
  */
 function load_config(string $file): array|false
 {
-    $path = __DIR__ . '/../config/' . $file . '.json';
+    $config_path  = __DIR__ . '/../config/' . $file . '.json';
+    $defaults_path = __DIR__ . '/../config-defaults/' . $file . '.json';
 
-    if (!file_exists($path)) {
-        error_log("Config file not found: {$path}");
+    // Try config/ first (mounted ConfigMap), then fall back to config-defaults/
+    if (file_exists($config_path)) {
+        $path = $config_path;
+    } elseif (file_exists($defaults_path)) {
+        $path = $defaults_path;
+    } else {
+        error_log("Config file not found: {$file}.json");
         return false;
     }
 
