@@ -7,6 +7,8 @@
 #   3. On startup, any file present in config/ overrides the corresponding
 #      file in config-defaults/. Files only in config-defaults/ are copied
 #      to config/ so the application always has a complete set of config files.
+#   4. If config/ is read-only (e.g. Kubernetes ConfigMap), skip the copy
+#      — the app falls back to config-defaults/ automatically.
 #
 # Usage:
 #   - For local dev: mount your custom config/*.json into /var/www/html/config/
@@ -19,18 +21,24 @@ CONFIG_DIR="/var/www/html/config"
 DEFAULTS_DIR="/var/www/html/config-defaults"
 
 if [ -d "$DEFAULTS_DIR" ] && [ -d "$CONFIG_DIR" ]; then
-    # Copy defaults into config/ for any files that don't exist yet
-    for src in "$DEFAULTS_DIR"/*.json; do
-        [ -f "$src" ] || continue
-        filename=$(basename "$src")
-        dest="$CONFIG_DIR/$filename"
-        if [ ! -f "$dest" ]; then
-            cp "$src" "$dest"
-            echo "Copied default: $filename"
-        else
-            echo "Using user override: $filename"
-        fi
-    done
+    # Check if config/ is writable
+    if touch "$CONFIG_DIR/.write-test" 2>/dev/null; then
+        rm -f "$CONFIG_DIR/.write-test"
+        # Copy defaults into config/ for any files that don't exist yet
+        for src in "$DEFAULTS_DIR"/*.json; do
+            [ -f "$src" ] || continue
+            filename=$(basename "$src")
+            dest="$CONFIG_DIR/$filename"
+            if [ ! -f "$dest" ]; then
+                cp "$src" "$dest"
+                echo "Copied default: $filename"
+            else
+                echo "Using user override: $filename"
+            fi
+        done
+    else
+        echo "Config directory is read-only — using config-defaults/ directly"
+    fi
 fi
 
 exec "$@"
