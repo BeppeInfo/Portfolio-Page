@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($site['title'] ?? 'Portfolio') ?></title>
-    <meta name="description" content="<?= e($site['description'] ?? '') ?>">
+    <meta name="description" content="<?= e(trans($site['description'], $lang)) ?>">
     <link rel="stylesheet" href="<?= e(base_url()) ?>/assets/css/style.css">
     <link rel="icon" type="image/svg+xml" href="<?= e(favicon_url()) ?>">
 </head>
@@ -50,7 +50,7 @@
 
     <footer class="footer">
         <div class="footer-container">
-            <p><?= e($strings['footer'] ?? $site['footer'] ?? '') ?></p>
+            <p><?= e(trans($site['footer'], $lang)) ?></p>
             <div class="social-links">
                 <?php if (!empty($site['social']['github'])): ?>
                     <a href="<?= e($site['social']['github']) ?>" target="_blank" rel="noopener" title="GitHub">

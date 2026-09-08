@@ -44,7 +44,7 @@ ob_start();
                                 <h4><?= t('experience.achievements') ?></h4>
                                 <ul>
                                     <?php foreach ($item['achievements'] as $achievement): ?>
-                                        <li><?= e($achievement) ?></li>
+                                        <li><?= e(trans($achievement, $lang)) ?></li>
                                     <?php endforeach; ?>
                                 </ul>
                             </div>

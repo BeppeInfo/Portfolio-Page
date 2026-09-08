@@ -14,13 +14,13 @@
     "es": "Desarrollador de software con experiencia en la construcción de aplicaciones web robustas e infraestructura cloud-native."
   },
   "highlights": [
-    { "icon": "code", "title": "Full Stack", "description": "PHP, JavaScript, Docker, Kubernetes..." },
-    { "icon": "cloud", "title": "Cloud Native", "description": "Kubernetes, CI/CD, Infrastructure as Code..." },
-    { "icon": "terminal", "title": "DevOps", "description": "Automation, monitoring, container orchestration..." }
+    { "icon": "code", "title": {"en": "Full Stack", "pt": "Full Stack", "es": "Full Stack"}, "description": {"en": "PHP, JavaScript, Docker, Kubernetes...", "pt": "PHP, JavaScript, Docker, Kubernetes...", "es": "PHP, JavaScript, Docker, Kubernetes..."} },
+    { "icon": "cloud", "title": {"en": "Cloud Native", "pt": "Cloud Native", "es": "Cloud Native"}, "description": {"en": "Kubernetes, CI/CD, Infrastructure as Code...", "pt": "Kubernetes, CI/CD, Infrastructure as Code...", "es": "Kubernetes, CI/CD, Infrastructure as Code..."} },
+    { "icon": "terminal", "title": {"en": "DevOps", "pt": "DevOps", "es": "DevOps"}, "description": {"en": "Automation, monitoring, container orchestration...", "pt": "Automação, monitoramento, orquestração de containers...", "es": "Automatización, monitoreo, orquestación de contenedores..."} }
   ],
   "skills": [
-    { "category": "Languages", "items": ["PHP", "JavaScript", "Python", "SQL"] },
-    { "category": "Frameworks", "items": ["Laravel", "Node.js"] },
-    { "category": "Infrastructure", "items": ["Docker", "Kubernetes", "Nginx"] }
+    { "category": {"en": "Languages", "pt": "Linguagens", "es": "Lenguajes"}, "items": ["PHP", "JavaScript", "Python", "SQL"] },
+    { "category": {"en": "Frameworks", "pt": "Frameworks", "es": "Frameworks"}, "items": ["Laravel", "Node.js"] },
+    { "category": {"en": "Infrastructure", "pt": "Infraestrutura", "es": "Infraestructura"}, "items": ["Docker", "Kubernetes", "Nginx"] }
   ]
 }

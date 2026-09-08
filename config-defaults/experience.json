@@ -1,28 +1,28 @@
 [
   {
     "period": "2023 – Present",
-    "role": "Software Developer",
+    "role": {"en": "Software Developer", "pt": "Desenvolvedor de Software", "es": "Desarrollador de Software"},
     "company": "Example Corp",
     "location": "City, Country",
     "remote": true,
-    "description": "Building web applications and cloud infrastructure.",
+    "description": {"en": "Building web applications and cloud infrastructure.", "pt": "Construindo aplicações web e infraestrutura em nuvem.", "es": "Construyendo aplicaciones web e infraestructura en la nube."},
     "achievements": [
-      "Developed REST API serving 10K+ requests/day",
-      "Implemented CI/CD pipeline reducing deployment time by 50%"
+      {"en": "Developed REST API serving 10K+ requests/day", "pt": "Desenvolveu API REST atendendo 10K+ requisições/dia", "es": "Desarrolló API REST atendiendo 10K+ peticiones/día"},
+      {"en": "Implemented CI/CD pipeline reducing deployment time by 50%", "pt": "Implementou pipeline CI/CD reduzindo tempo de deploy em 50%", "es": "Implementó pipeline CI/CD reduciendo tiempo de despliegue en 50%"}
     ],
     "technologies": ["PHP", "Docker", "Kubernetes", "PostgreSQL"],
     "link": ""
   },
   {
     "period": "2020 – 2023",
-    "role": "Junior Developer",
+    "role": {"en": "Junior Developer", "pt": "Desenvolvedor Júnior", "es": "Desarrollador Junior"},
     "company": "Startup Inc.",
     "location": "City, Country",
     "remote": false,
-    "description": "Developed web applications using modern technologies.",
+    "description": {"en": "Developed web applications using modern technologies.", "pt": "Desenvolveu aplicações web usando tecnologias modernas.", "es": "Desarrolló aplicaciones web usando tecnologías modernas."},
     "achievements": [
-      "Delivered 5 client projects on time",
-      "Introduced automated testing to the team"
+      {"en": "Delivered 5 client projects on time", "pt": "Entregou 5 projetos de clientes no prazo", "es": "Entregó 5 proyectos de clientes a tiempo"},
+      {"en": "Introduced automated testing to the team", "pt": "Introduziu testes automatizados na equipe", "es": "Introdujo pruebas automatizadas al equipo"}
     ],
     "technologies": ["PHP", "Laravel", "MySQL", "JavaScript"],
     "link": ""

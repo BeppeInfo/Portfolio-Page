@@ -20,15 +20,15 @@
 
     <?php if (!empty($bio['highlights'])): ?>
         <section class="bio-section">
-            <h2><?= e(trans($bio['highlights_title'], $lang)) ?></h2>
+            <h2><?= e(t('bio.highlights_title')) ?></h2>
             <div class="highlights-grid">
                 <?php foreach ($bio['highlights'] as $h): ?>
                     <div class="highlight-card">
                         <div class="highlight-icon">
                             <?= icon($h['icon']) ?>
                         </div>
-                        <h3><?= e($h['title']) ?></h3>
-                        <p><?= e($h['description']) ?></p>
+                        <h3><?= e(trans($h['title'], $lang)) ?></h3>
+                        <p><?= e(trans($h['description'], $lang)) ?></p>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -37,11 +37,11 @@
 
     <?php if (!empty($bio['skills'])): ?>
         <section class="bio-section">
-            <h2><?= e(trans($bio['skills_title'], $lang)) ?></h2>
+            <h2><?= e(t('bio.skills_title')) ?></h2>
             <div class="skills-grid">
                 <?php foreach ($bio['skills'] as $skill): ?>
                     <div class="skill-category">
-                        <h3><?= e($skill['category']) ?></h3>
+                        <h3><?= e(trans($skill['category'], $lang)) ?></h3>
                         <div class="skill-tags">
                             <?php foreach ($skill['items'] as $item): ?>
                                 <span class="skill-tag"><?= e($item) ?></span>

@@ -1,7 +1,7 @@
 {
   "title": "John Doe — Portfolio",
   "tagline": "Software Developer & Engineer",
-  "description": "Professional portfolio of John Doe",
+  "description": {"en": "Professional portfolio of John Doe", "pt": "Portfólio profissional de John Doe", "es": "Portafolio profesional de John Doe"},
   "language": "en",
   "languages": ["en", "pt", "es"],
   "default_language": "en",
@@ -29,5 +29,5 @@
     "text-muted": "#a0a0b0",
     "border": "#2a2a4a"
   },
-  "footer": "© 2026 John Doe. All rights reserved."
+  "footer": {"en": "© 2026 John Doe. All rights reserved.", "pt": "© 2026 John Doe. Todos os direitos reservados.", "es": "© 2026 John Doe. Todos los derechos reservados."}
 }

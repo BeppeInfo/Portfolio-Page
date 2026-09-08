@@ -1,10 +1,15 @@
 {
+  "title": {
+    "en": "Media Showcase",
+    "pt": "Galeria de Mídia",
+    "es": "Galería de Medios"
+  },
   "items": [
     {
       "id": "sample-project",
       "type": "image",
       "title": "Sample Project",
-      "description": "A sample project to demonstrate the media gallery layout.",
+      "description": {"en": "A sample project to demonstrate the media gallery layout.", "pt": "Um projeto de exemplo para demonstrar o layout da galeria de mídia.", "es": "Un proyecto de ejemplo para demostrar el diseño de la galería de medios."},
       "image": "/images/projects/sample.webp",
       "thumbnail": "/images/projects/sample-thumb.webp",
       "tags": ["PHP", "Docker"],
@@ -18,7 +23,7 @@
       "id": "sample-video",
       "type": "video",
       "title": "Sample Video",
-      "description": "A sample video embed to demonstrate the media player.",
+      "description": {"en": "A sample video embed to demonstrate the media player.", "pt": "Um vídeo de exemplo para demonstrar o player de mídia.", "es": "Un video de ejemplo para demostrar el reproductor de medios."},
       "thumbnail": "/images/media/sample-video-thumb.webp",
       "tags": ["Demo", "Tutorial"],
       "links": {

@@ -16,11 +16,11 @@ ob_start();
                 <div class="timeline-content">
                     <div class="timeline-header">
                         <span class="timeline-year"><?= e($item['year']) ?></span>
-                        <h3><?= e($item['degree']) ?></h3>
+                        <h3><?= e(trans($item['degree'], $lang)) ?></h3>
                     </div>
                     <div class="timeline-body">
                         <div class="timeline-detail">
-                            <strong><?= t('education.institution') ?>:</strong> <?= e($item['institution']) ?>
+                            <strong><?= t('education.institution') ?>:</strong> <?= e(trans($item['institution'], $lang)) ?>
                         </div>
                         <?php if (!empty($item['location'])): ?>
                             <div class="timeline-detail">
@@ -28,7 +28,7 @@ ob_start();
                             </div>
                         <?php endif; ?>
                         <?php if (!empty($item['description'])): ?>
-                            <p class="timeline-description"><?= e($item['description']) ?></p>
+                            <p class="timeline-description"><?= e(trans($item['description'], $lang)) ?></p>
                         <?php endif; ?>
                     </div>
                 </div>

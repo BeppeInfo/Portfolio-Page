@@ -5,19 +5,19 @@
     "experience": "Experiencia",
     "media": "Medios"
   },
+  "bio": {
+    "highlights_title": "Lo Que Hago",
+    "skills_title": "Habilidades"
+  },
   "education": {
     "title": "Educación",
-    "degree": "Grado",
-    "institution": "Institución",
     "location": "Ubicación",
     "year": "Período"
   },
   "experience": {
     "title": "Experiencia Profesional",
-    "role": "Cargo",
     "company": "Empresa",
     "remote": "Remoto",
-    "achievements": "Logros Principales",
     "technologies": "Tecnologías"
   },
   "media": {

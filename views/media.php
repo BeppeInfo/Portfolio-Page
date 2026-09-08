@@ -53,7 +53,7 @@ ob_start();
                 <div class="media-card-body">
                     <h3><?= e($item['title']) ?></h3>
                     <?php if (!empty($item['description'])): ?>
-                        <p class="media-card-desc"><?= e($item['description']) ?></p>
+                        <p class="media-card-desc"><?= e(trans($item['description'], $lang)) ?></p>
                     <?php endif; ?>
 
                     <?php if (!empty($item['tags'])): ?>

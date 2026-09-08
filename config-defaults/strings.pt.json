@@ -5,19 +5,19 @@
     "experience": "Experiência",
     "media": "Mídia"
   },
+  "bio": {
+    "highlights_title": "O Que Faço",
+    "skills_title": "Habilidades"
+  },
   "education": {
     "title": "Formação",
-    "degree": "Grau",
-    "institution": "Instituição",
     "location": "Local",
     "year": "Período"
   },
   "experience": {
     "title": "Experiência Profissional",
-    "role": "Cargo",
     "company": "Empresa",
     "remote": "Remoto",
-    "achievements": "Conquistas Principais",
     "technologies": "Tecnologias"
   },
   "media": {
@@ -28,7 +28,7 @@
     "view_on_peertube": "Ver no",
     "view_source_code": "Ver código-fonte",
     "view_original": "Ver original",
-    "view_document": "Baixar document",
+    "view_document": "Baixar documento",
     "view_website": "Ver site",
     "play": "Reproduzir"
   },

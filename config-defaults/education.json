@@ -1,18 +1,18 @@
 [
   {
     "year": "2018 – 2022",
-    "degree": "Bachelor of Computer Science",
-    "institution": "University of Example",
+    "degree": {"en": "Bachelor of Computer Science", "pt": "Bacharel em Ciência da Computação", "es": "Licenciatura en Ciencias de la Computación"},
+    "institution": {"en": "University of Example", "pt": "Universidade de Exemplo", "es": "Universidad de Ejemplo"},
     "location": "City, Country",
-    "description": "Focused on software engineering and distributed systems.",
+    "description": {"en": "Focused on software engineering and distributed systems.", "pt": "Focado em engenharia de software e sistemas distribuídos.", "es": "Enfocado en ingeniería de software y sistemas distribuidos."},
     "icon": "graduation-cap"
   },
   {
     "year": "2023",
-    "degree": "AWS Certified Solutions Architect – Associate",
-    "institution": "Amazon Web Services",
+    "degree": {"en": "AWS Certified Solutions Architect – Associate", "pt": "AWS Certified Solutions Architect – Associate", "es": "AWS Certified Solutions Architect – Associate"},
+    "institution": {"en": "Amazon Web Services", "pt": "Amazon Web Services", "es": "Amazon Web Services"},
     "location": "Online",
-    "description": "Certification covering cloud architecture and deployment.",
+    "description": {"en": "Certification covering cloud architecture and deployment.", "pt": "Certificação que abrange arquitetura e implantação em nuvem.", "es": "Certificación que cubre arquitectura y despliegue en la nube."},
     "icon": "certificate"
   }
 ]
