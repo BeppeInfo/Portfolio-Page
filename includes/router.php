@@ -45,6 +45,10 @@ function dispatch(): array
             $media = load_config('media') ?: [];
             return ['view' => 'media', 'data' => array_merge($sharedData, ['media' => $media])];
 
+        case 'articles':
+            $articles = load_config('articles') ?: [];
+            return ['view' => 'articles', 'data' => array_merge($sharedData, ['articles' => $articles])];
+
         default:
             return ['view' => '404', 'data' => $sharedData];
     }

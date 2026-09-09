@@ -3,7 +3,8 @@
     "bio": "Bio",
     "education": "Education",
     "experience": "Experience",
-    "media": "Media"
+    "media": "Media",
+    "articles": "Articles"
   },
   "bio": {
     "highlights_title": "What I Do",

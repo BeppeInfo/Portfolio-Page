@@ -10,7 +10,8 @@
     { "label": "nav.bio", "route": "bio" },
     { "label": "nav.education", "route": "education" },
     { "label": "nav.experience", "route": "experience" },
-    { "label": "nav.media", "route": "media" }
+    { "label": "nav.media", "route": "media" },
+    { "label": "nav.articles", "route": "articles" }
   ],
   "social": {
     "github": "https://github.com/johndoe",
