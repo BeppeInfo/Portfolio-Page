@@ -36,7 +36,7 @@ ob_start();
                          data-embed-url="<?= e($videoInfo['embedUrl'] ?? '') ?>"
                          data-platform="<?= e($videoInfo['platform'] ?? '') ?>">
                         <img src="<?= e($item['thumbnail'] ?? '') ?>"
-                             alt="<?= e($item['title']) ?>"
+                             alt="<?= e(trans($item['title'], $lang)) ?>"
                              loading="lazy">
                         <div class="play-button">
                             <?= icon('play') ?>
@@ -45,13 +45,13 @@ ob_start();
                 <?php else: ?>
                     <a href="<?= e($item['thumbnail'] ?? '') ?>" class="media-image-link">
                         <img src="<?= e($item['thumbnail'] ?? '') ?>"
-                             alt="<?= e($item['title']) ?>"
+                             alt="<?= e(trans($item['title'], $lang)) ?>"
                              loading="lazy">
                     </a>
                 <?php endif; ?>
 
                 <div class="media-card-body">
-                    <h3><?= e($item['title']) ?></h3>
+                    <h3><?= e(trans($item['title'], $lang)) ?></h3>
                     <?php if (!empty($item['description'])): ?>
                         <p class="media-card-desc"><?= e(trans($item['description'], $lang)) ?></p>
                     <?php endif; ?>

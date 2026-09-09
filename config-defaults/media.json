@@ -8,7 +8,7 @@
     {
       "id": "sample-project",
       "type": "image",
-      "title": "Sample Project",
+      "title": {"en": "Sample Project", "pt": "Projeto de Exemplo", "es": "Proyecto de Ejemplo"},
       "description": {"en": "A sample project to demonstrate the media gallery layout.", "pt": "Um projeto de exemplo para demonstrar o layout da galeria de mídia.", "es": "Un proyecto de ejemplo para demostrar el diseño de la galería de medios."},
       "image": "/images/projects/sample.webp",
       "thumbnail": "/images/projects/sample-thumb.webp",
@@ -22,7 +22,7 @@
     {
       "id": "sample-video",
       "type": "video",
-      "title": "Sample Video",
+      "title": {"en": "Sample Video", "pt": "Vídeo de Exemplo", "es": "Video de Ejemplo"},
       "description": {"en": "A sample video embed to demonstrate the media player.", "pt": "Um vídeo de exemplo para demonstrar o player de mídia.", "es": "Un video de ejemplo para demostrar el reproductor de medios."},
       "thumbnail": "/images/media/sample-video-thumb.webp",
       "tags": ["Demo", "Tutorial"],
