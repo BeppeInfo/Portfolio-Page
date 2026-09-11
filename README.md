@@ -84,6 +84,7 @@ This means:
 | `education.json` | Education entries: degree, institution, year, description |
 | `experience.json` | Work experience: role, company, period, achievements, technologies |
 | `media.json` | Media showcase: projects (images) and videos (Peertube embeds) |
+| `articles.json` | Article series: grouped, foldable lists of external writing |
 | `strings.en.json` | English translations (base language) |
 | `strings.pt.json` | Portuguese translations (overrides base) |
 | `strings.es.json` | Spanish translations (overrides base) |
@@ -115,6 +116,7 @@ kubectl create configmap portfolio-config \
   --from-file=config/education.json \
   --from-file=config/experience.json \
   --from-file=config/media.json \
+  --from-file=config/articles.json \
   --from-file=config/strings.en.json \
   --from-file=config/strings.pt.json \
   --from-file=config/strings.es.json \
@@ -136,6 +138,7 @@ kubectl create configmap portfolio-config \
   --from-file=config-defaults/education.json \
   --from-file=config-defaults/experience.json \
   --from-file=config-defaults/media.json \
+  --from-file=config-defaults/articles.json \
   --from-file=config-defaults/strings.en.json \
   --from-file=config-defaults/strings.pt.json \
   --from-file=config-defaults/strings.es.json \
@@ -152,7 +155,7 @@ The `deployment.yaml` mounts the ConfigMap at `/var/www/html/config`, which over
 {
   "title": "Your Name — Portfolio",
   "tagline": "Your Role",
-  "description": "A short description of yourself",
+  "description": {"en": "A short description of yourself", "pt": "...", "es": "..."},
   "languages": ["en", "pt", "es"],
   "default_language": "en",
   "timezone": "America/Sao_Paulo",
@@ -160,7 +163,8 @@ The `deployment.yaml` mounts the ConfigMap at `/var/www/html/config`, which over
     { "label": "nav.bio", "route": "bio" },
     { "label": "nav.education", "route": "education" },
     { "label": "nav.experience", "route": "experience" },
-    { "label": "nav.media", "route": "media" }
+    { "label": "nav.media", "route": "media" },
+    { "label": "nav.articles", "route": "articles" }
   ],
   "social": {
     "github": "https://github.com/yourusername",
@@ -179,7 +183,7 @@ The `deployment.yaml` mounts the ConfigMap at `/var/www/html/config`, which over
     "text-muted": "#a0a0b0",
     "border": "#2a2a4a"
   },
-  "footer": "© 2026 Your Name. All rights reserved."
+  "footer": {"en": "© 2026 Your Name. All rights reserved.", "pt": "...", "es": "..."}
 }
 ```
 
@@ -282,6 +286,52 @@ Valid `icon` values: `graduation-cap`, `certificate`, `check`.
 }
 ```
 
+#### articles.json
+
+A list of **series** (parts), each holding a foldable list of articles. Sorted by
+`date` descending, both at the series level and within each series.
+
+```json
+[
+  {
+    "title": {"en": "Series Title", "pt": "Título da Série", "es": "Título de la Serie"},
+    "description": {
+      "en": "What this series covers.",
+      "pt": "O que esta série aborda.",
+      "es": "De qué trata esta serie."
+    },
+    "url": "https://example.com/series-index",
+    "date": "2025-06-01",
+    "articles": [
+      {
+        "url": "https://example.com/article-one",
+        "title": "Article Title",
+        "summary": {
+          "en": "One or two lines about the article.",
+          "pt": "Uma ou duas linhas sobre o artigo.",
+          "es": "Una o dos líneas sobre el artículo."
+        },
+        "date": "2025-01-15"
+      }
+    ]
+  }
+]
+```
+
+| Field | Level | Required | Purpose |
+|-------|-------|----------|---------|
+| `title` | series, article | yes | Heading / link text |
+| `url` | article | yes | Link target (opens in a new tab) |
+| `date` | series, article | no | `YYYY-MM-DD`; drives the descending sort, rendered blank if omitted |
+| `description` | series | no | Shown under the series title in the header |
+| `url` | series | no | Adds an external-link icon beside the series title |
+| `articles` | series | no | Omit or use `[]` to show the `articles.no_articles` string |
+| `summary` | article | no | Shown under the article link |
+
+Every text field accepts either a plain string or a `{"en": ..., "pt": ..., "es": ...}`
+object, resolved by `trans()` with a fallback to `en`. Use a plain string for values
+that shouldn't be translated, such as the real title of an English-language post.
+
 ### Images
 
 Images are stored in `public/images/` and gitignored (mounted at runtime). The expected structure:
@@ -347,6 +397,7 @@ Portfolio-Page/
 │   ├── education.json             # Education entries
 │   ├── experience.json            # Work experience entries
 │   ├── media.json                 # Media showcase (projects + videos)
+│   ├── articles.json              # Article series (grouped external writing)
 │   ├── strings.en.json            # English translations (base)
 │   ├── strings.pt.json            # Portuguese translations
 │   └── strings.es.json            # Spanish translations
@@ -357,6 +408,7 @@ Portfolio-Page/
 │   ├── education.json
 │   ├── experience.json
 │   ├── media.json
+│   ├── articles.json
 │   ├── strings.en.json
 │   ├── strings.pt.json
 │   └── strings.es.json
@@ -371,9 +423,9 @@ Portfolio-Page/
 │
 ├── includes/                      # PHP core (no framework)
 │   ├── data-loader.php            # JSON file loader + language string merger
-│   ├── helpers.php                # t(), base_url(), get_language(), get_route(), e()
+│   ├── helpers.php                # t(), trans(), icon(), base_url(), get_language(), get_route(), e()
 │   ├── template.php               # Simple render() function
-│   └── router.php                 # Route dispatch (bio, education, experience, media, 404)
+│   └── router.php                 # Route dispatch (bio, education, experience, media, articles, 404)
 │
 ├── views/                         # HTML templates
 │   ├── layout.php                 # Master layout (nav, footer, social icons)
@@ -382,6 +434,7 @@ Portfolio-Page/
 │   ├── education.php              # Education timeline
 │   ├── experience.php             # Experience timeline
 │   ├── media.php                  # Media showcase (gallery + video lightbox)
+│   ├── articles.php               # Article series (foldable accordion)
 │   └── 404.php                    # Custom 404 page
 │
 ├── docker/
@@ -436,10 +489,11 @@ Browser → Nginx (static assets) / PHP-FPM (dynamic pages)
 
 | URL Path | Route | View |
 |----------|-------|------|
-| `/` or `/bio` | `bio` | `views/bio.php` |
+| `/` or `/media` | `media` | `views/media.php` |
+| `/bio` | `bio` | `views/bio.php` |
 | `/education` | `education` | `views/education.php` |
 | `/experience` | `experience` | `views/experience.php` |
-| `/media` | `media` | `views/media.php` |
+| `/articles` | `articles` | `views/articles.php` |
 | Any other | `404` | `views/404.php` |
 
 Language can be overridden via query parameter: `/?lang=pt` or `/?lang=es`.
@@ -509,6 +563,7 @@ kubectl create configmap portfolio-config \
   --from-file=config/education.json \
   --from-file=config/experience.json \
   --from-file=config/media.json \
+  --from-file=config/articles.json \
   --from-file=config/strings.en.json \
   --from-file=config/strings.pt.json \
   --from-file=config/strings.es.json \
