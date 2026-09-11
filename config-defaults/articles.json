@@ -5,6 +5,11 @@
       "pt": "Cloud e DevOps",
       "es": "Cloud y DevOps"
     },
+    "description": {
+      "en": "A series on containers, orchestration and self-hosting, from first deployment to production workloads.",
+      "pt": "Uma série sobre containers, orquestração e auto-hospedagem, do primeiro deploy às cargas de produção.",
+      "es": "Una serie sobre contenedores, orquestación y autoalojamiento, desde el primer despliegue hasta las cargas de producción."
+    },
     "url": "https://example.com/cloud",
     "date": "2025-06-01",
     "articles": [
@@ -14,6 +19,11 @@
           "en": "Getting Started with Kubernetes",
           "pt": "Começando com Kubernetes",
           "es": "Empezando con Kubernetes"
+        },
+        "summary": {
+          "en": "Setting up a first cluster and deploying a workload to it.",
+          "pt": "Configurando um primeiro cluster e implantando uma carga nele.",
+          "es": "Configurando un primer clúster y desplegando una carga en él."
         },
         "date": "2025-01-15"
       },

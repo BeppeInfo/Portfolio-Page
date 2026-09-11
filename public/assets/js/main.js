@@ -139,6 +139,11 @@
     header.addEventListener('click', function () {
       var expanded = this.getAttribute('aria-expanded') === 'true';
       this.setAttribute('aria-expanded', String(!expanded));
+
+      var part = this.closest('.article-part');
+      if (part) {
+        part.classList.toggle('open', !expanded);
+      }
     });
   });
 })();
