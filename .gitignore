@@ -15,6 +15,7 @@ config/bio.json
 config/education.json
 config/experience.json
 config/media.json
+config/articles.json
 config/strings.en.json
 config/strings.pt.json
 config/strings.es.json
