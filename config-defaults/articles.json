@@ -1,32 +1,50 @@
 [
   {
-    "url": "https://example.com/article-one",
-    "title": "Getting Started with Kubernetes",
-    "summary": {
-      "en": "A comprehensive guide to deploying your first application on Kubernetes, covering pods, services, and deployments.",
-      "pt": "Um guia completo para implantar sua primeira aplicação no Kubernetes, cobrindo pods, serviços e deployments.",
-      "es": "Una guía completa para desplegar tu primera aplicación en Kubernetes, cubriendo pods, servicios y despliegues."
+    "title": {
+      "en": "Cloud & DevOps",
+      "pt": "Cloud e DevOps",
+      "es": "Cloud y DevOps"
     },
-    "date": "2025-01-15"
+    "url": "https://example.com/cloud",
+    "date": "2025-06-01",
+    "articles": [
+      {
+        "url": "https://example.com/article-one",
+        "title": {
+          "en": "Getting Started with Kubernetes",
+          "pt": "Começando com Kubernetes",
+          "es": "Empezando con Kubernetes"
+        },
+        "date": "2025-01-15"
+      },
+      {
+        "url": "https://example.com/article-two",
+        "title": {
+          "en": "Building Lightweight PHP Applications",
+          "pt": "Construindo Aplicações PHP Leves",
+          "es": "Construyendo Aplicaciones PHP Ligeras"
+        },
+        "date": "2025-03-20"
+      },
+      {
+        "url": "https://example.com/article-three",
+        "title": {
+          "en": "Self-Hosting Your Media with Peertube",
+          "pt": "Auto-hospedagem de Mídia com Peertube",
+          "es": "Autoalojamiento de Medios con Peertube"
+        },
+        "date": "2025-06-10"
+      }
+    ]
   },
   {
-    "url": "https://example.com/article-two",
-    "title": "Building Lightweight PHP Applications",
-    "summary": {
-      "en": "Exploring how to build fast, dependency-free PHP applications without frameworks or Composer.",
-      "pt": "Explorando como construir aplicações PHP rápidas e sem dependências, sem frameworks ou Composer.",
-      "es": "Explorando cómo construir aplicaciones PHP rápidas y sin dependencias, sin frameworks ni Composer."
+    "title": {
+      "en": "Security & Infrastructure",
+      "pt": "Segurança e Infraestrutura",
+      "es": "Seguridad e Infraestructura"
     },
-    "date": "2025-03-20"
-  },
-  {
-    "url": "https://example.com/article-three",
-    "title": "Self-Hosting Your Media with Peertube",
-    "summary": {
-      "en": "How to set up and manage a self-hosted Peertube instance for your personal or community video platform.",
-      "pt": "Como configurar e gerenciar uma instância Peertube auto-hospedada para sua plataforma de vídeo pessoal ou comunitária.",
-      "es": "Cómo configurar y gestionar una instancia Peertube autoalojada para tu plataforma de vídeo personal o comunitaria."
-    },
-    "date": "2025-06-10"
+    "url": "https://example.com/security",
+    "date": "2025-05-15",
+    "articles": []
   }
 ]

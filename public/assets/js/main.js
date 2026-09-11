@@ -133,4 +133,12 @@
       closeImageLightbox();
     }
   });
+
+  // ===== Articles accordion toggle =====
+  document.querySelectorAll('.part-header').forEach(function (header) {
+    header.addEventListener('click', function () {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!expanded));
+    });
+  });
 })();

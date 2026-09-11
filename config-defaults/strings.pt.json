@@ -6,6 +6,9 @@
     "media": "Mídia",
     "articles": "Artigos"
   },
+  "articles": {
+    "no_articles": "Nenhum artigo ainda"
+  },
   "bio": {
     "highlights_title": "O Que Faço",
     "skills_title": "Habilidades"

@@ -6,9 +6,9 @@ ob_start();
     <h1><?= e(t('nav.articles')) ?></h1>
 
     <?php
-    // Sort all articles by date descending
-    $allArticles = $articles ?? [];
-    usort($allArticles, function ($a, $b) {
+    // Sort parts by date descending
+    $parts = $articles ?? [];
+    usort($parts, function ($a, $b) {
         $dateA = $a['date'] ?? '0000-00-00';
         $dateB = $b['date'] ?? '0000-00-00';
         return strcmp($dateB, $dateA);
@@ -16,18 +16,51 @@ ob_start();
     ?>
 
     <div class="articles-list">
-        <?php foreach ($allArticles as $article): ?>
-            <article class="article-card">
-                <div class="article-header">
-                    <span class="article-date"><?= e($article['date'] ?? '') ?></span>
-                    <h2 class="article-title">
-                        <a href="<?= e($article['url']) ?>" target="_blank" rel="noopener"><?= e($article['title']) ?></a>
-                    </h2>
-                </div>
-                <?php if (!empty($article['summary'])): ?>
-                    <p class="article-summary"><?= e(trans($article['summary'], $lang)) ?></p>
+        <?php foreach ($parts as $index => $part): ?>
+            <div class="article-part">
+                <button class="part-header" aria-expanded="false" data-part-index="<?= $index ?>">
+                    <span class="part-title">
+                        <?= e(trans($part['title'], $lang)) ?>
+                    </span>
+                    <?php if (!empty($part['url'])): ?>
+                        <a class="part-link" href="<?= e($part['url']) ?>" target="_blank" rel="noopener" title="<?= e(trans($part['title'], $lang)) ?>">
+                            <?= icon('external-link') ?>
+                        </a>
+                    <?php endif; ?>
+                    <span class="part-date"><?= e($part['date'] ?? '') ?></span>
+                    <span class="part-chevron">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </span>
+                </button>
+
+                <?php if (!empty($part['articles'])): ?>
+                    <div class="part-articles" id="part-articles-<?= $index ?>">
+                        <?php
+                        // Sort articles within part by date descending
+                        $partArticles = $part['articles'];
+                        usort($partArticles, function ($a, $b) {
+                            $dateA = $a['date'] ?? '0000-00-00';
+                            $dateB = $b['date'] ?? '0000-00-00';
+                            return strcmp($dateB, $dateA);
+                        });
+                        ?>
+                        <ul class="article-items">
+                            <?php foreach ($partArticles as $article): ?>
+                                <li class="article-item">
+                                    <span class="article-date"><?= e($article['date'] ?? '') ?></span>
+                                    <a class="article-link" href="<?= e($article['url']) ?>" target="_blank" rel="noopener">
+                                        <?= e(trans($article['title'], $lang)) ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <div class="part-articles part-articles-empty" id="part-articles-<?= $index ?>">
+                        <span class="empty-label"><?= e(t('articles.no_articles')) ?></span>
+                    </div>
                 <?php endif; ?>
-            </article>
+            </div>
         <?php endforeach; ?>
     </div>
 </div>
