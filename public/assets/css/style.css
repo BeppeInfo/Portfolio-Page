@@ -1046,6 +1046,23 @@ img {
   color: var(--color-text-muted);
 }
 
+/* Single article (no articles list, just a base URL) */
+.article-part-single {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.article-part-single .part-chevron {
+  display: none;
+}
+
+.article-part-single .part-header-row {
+  cursor: default;
+}
+
+.article-part-single .part-header-row:hover {
+  background: transparent;
+}
+
 /* Empty state */
 .part-articles-empty {
   padding: 0.5rem 0;
