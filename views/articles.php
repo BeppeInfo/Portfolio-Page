@@ -84,12 +84,12 @@ ob_start();
                             <?php endif; ?>
                         </span>
                         <span class="part-date"><?= e($part['date'] ?? '') ?></span>
+                        <?php if (!empty($part['url'])): ?>
+                            <a class="part-link" href="<?= e($part['url']) ?>" target="_blank" rel="noopener" title="<?= e(trans($part['title'], $lang)) ?>">
+                                <?= icon('external-link') ?>
+                            </a>
+                        <?php endif; ?>
                     </div>
-                    <?php if (!empty($part['url'])): ?>
-                        <a class="part-link" href="<?= e($part['url']) ?>" target="_blank" rel="noopener" title="<?= e(trans($part['title'], $lang)) ?>">
-                            <?= icon('external-link') ?>
-                        </a>
-                    <?php endif; ?>
                 </div>
             <?php endif; ?>
         <?php endforeach; ?>
