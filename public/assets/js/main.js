@@ -136,7 +136,10 @@
 
   // ===== Articles accordion toggle =====
   document.querySelectorAll('.part-header').forEach(function (header) {
-    header.addEventListener('click', function () {
+    header.addEventListener('click', function (e) {
+      if (this.hasAttribute('href')) {
+        return;
+      }
       var expanded = this.getAttribute('aria-expanded') === 'true';
       this.setAttribute('aria-expanded', String(!expanded));
 

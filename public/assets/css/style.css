@@ -892,24 +892,7 @@ img {
   border-color: var(--color-primary-dim);
 }
 
-/* Part header row (accordion button + external link side by side) */
-.part-header-row {
-  display: flex;
-  align-items: stretch;
-  background: var(--color-surface);
-  transition: background 0.2s;
-}
-
-.part-header-row:hover,
-.article-part.open .part-header-row {
-  background: var(--color-primary-dim);
-}
-
-.article-part.open .part-header-row {
-  border-bottom: 1px solid var(--color-border);
-}
-
-/* Part header (accordion button) */
+/* Part header (button for both single and multi articles) */
 .part-header {
   display: flex;
   align-items: center;
@@ -917,13 +900,25 @@ img {
   flex: 1;
   min-width: 0;
   padding: 1rem 1.25rem;
-  background: none;
+  background: var(--color-surface);
   border: none;
   cursor: pointer;
   text-align: left;
   color: inherit;
   font: inherit;
+  text-decoration: none;
+  transition: background 0.2s;
 }
+
+.part-header:hover {
+  background: var(--color-primary-dim);
+}
+
+.part-header[href] {
+  cursor: pointer;
+}
+
+
 
 .part-heading {
   flex: 1;
@@ -944,24 +939,6 @@ img {
   line-height: 1.45;
   color: var(--color-text-muted);
   font-weight: 400;
-}
-
-.part-link {
-  color: var(--color-text-muted);
-  display: inline-flex;
-  align-items: center;
-  padding: 0 1.25rem 0 0;
-  transition: color 0.2s;
-  flex-shrink: 0;
-}
-
-.part-link:hover {
-  color: var(--color-primary);
-}
-
-.part-link .icon {
-  width: 14px;
-  height: 14px;
 }
 
 .part-date {
@@ -1062,10 +1039,6 @@ img {
   .part-header {
     padding: 0.85rem 1rem;
     gap: 0.5rem;
-  }
-
-  .part-link {
-    padding-right: 1rem;
   }
 
   .part-date {
