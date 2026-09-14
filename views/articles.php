@@ -30,13 +30,16 @@ ob_start();
                         <?php endif; ?>
                     </span>
                     <span class="part-date"><?= e($part['date'] ?? '') ?></span>
-                    <span class="part-chevron">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </span>
                 </button>
 
                 <?php if (!empty($part['articles'])): ?>
                     <div class="part-articles" id="part-articles-<?= $index ?>">
+                        <div class="part-articles-header">
+                            <span class="part-article-count"><?= count($part['articles']) ?> article<?= count($part['articles']) === 1 ? '' : 's' ?></span>
+                            <span class="part-chevron">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </div>
                         <?php
                         // Sort articles within part by date descending
                         $partArticles = $part['articles'];
