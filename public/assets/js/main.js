@@ -143,6 +143,16 @@
       var part = this.closest('.article-part');
       if (part) {
         part.classList.toggle('open', !expanded);
+
+        // Also expand inner list for multi-article entries
+        var articles = part.querySelector('.part-articles');
+        if (articles) {
+          articles.classList.toggle('expanded', !expanded);
+          var chevronBtn = articles.querySelector('.part-chevron-btn');
+          if (chevronBtn) {
+            chevronBtn.setAttribute('aria-expanded', String(!expanded));
+          }
+        }
       }
     });
   });
