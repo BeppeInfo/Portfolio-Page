@@ -135,11 +135,8 @@
   });
 
   // ===== Articles accordion toggle =====
-  document.querySelectorAll('.part-header').forEach(function (header) {
-    header.addEventListener('click', function (e) {
-      if (this.hasAttribute('href')) {
-        return;
-      }
+  document.querySelectorAll('.part-header[data-part-index]').forEach(function (header) {
+    header.addEventListener('click', function () {
       var expanded = this.getAttribute('aria-expanded') === 'true';
       this.setAttribute('aria-expanded', String(!expanded));
 

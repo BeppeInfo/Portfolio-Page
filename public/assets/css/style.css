@@ -914,7 +914,7 @@ img {
   background: var(--color-primary-dim);
 }
 
-.part-header[href] {
+.part-header-link {
   cursor: pointer;
 }
 

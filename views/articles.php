@@ -18,19 +18,35 @@ ob_start();
     <div class="articles-list">
         <?php foreach ($parts as $index => $part): ?>
             <div class="article-part">
-                <button class="part-header" aria-expanded="false" aria-controls="part-articles-<?= $index ?>" data-part-index="<?= $index ?>"<?php if (!empty($part['url'])): ?> href="<?= e($part['url']) ?>" target="_blank" rel="noopener"<?php endif; ?>>
-                    <span class="part-heading">
-                        <span class="part-title">
-                            <?= e(trans($part['title'], $lang)) ?>
-                        </span>
-                        <?php if (!empty($part['description'])): ?>
-                            <span class="part-description">
-                                <?= e(trans($part['description'], $lang)) ?>
+                <?php if (!empty($part['url'])): ?>
+                    <a class="part-header part-header-link" href="<?= e($part['url']) ?>" target="_blank" rel="noopener">
+                        <span class="part-heading">
+                            <span class="part-title">
+                                <?= e(trans($part['title'], $lang)) ?>
                             </span>
-                        <?php endif; ?>
-                    </span>
-                    <span class="part-date"><?= e($part['date'] ?? '') ?></span>
-                </button>
+                            <?php if (!empty($part['description'])): ?>
+                                <span class="part-description">
+                                    <?= e(trans($part['description'], $lang)) ?>
+                                </span>
+                            <?php endif; ?>
+                        </span>
+                        <span class="part-date"><?= e($part['date'] ?? '') ?></span>
+                    </a>
+                <?php else: ?>
+                    <button class="part-header" aria-expanded="false" aria-controls="part-articles-<?= $index ?>" data-part-index="<?= $index ?>">
+                        <span class="part-heading">
+                            <span class="part-title">
+                                <?= e(trans($part['title'], $lang)) ?>
+                            </span>
+                            <?php if (!empty($part['description'])): ?>
+                                <span class="part-description">
+                                    <?= e(trans($part['description'], $lang)) ?>
+                                </span>
+                            <?php endif; ?>
+                        </span>
+                        <span class="part-date"><?= e($part['date'] ?? '') ?></span>
+                    </button>
+                <?php endif; ?>
 
                 <?php if (!empty($part['articles'])): ?>
                     <div class="part-articles" id="part-articles-<?= $index ?>">
