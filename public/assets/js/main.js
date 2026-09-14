@@ -149,4 +149,18 @@
       }
     });
   });
+
+  // ===== Inner chevron toggle =====
+  document.querySelectorAll('.part-chevron-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!expanded));
+
+      var articles = this.closest('.part-articles');
+      if (articles) {
+        articles.classList.toggle('expanded', !expanded);
+      }
+    });
+  });
 })();

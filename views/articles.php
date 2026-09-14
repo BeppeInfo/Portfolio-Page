@@ -36,20 +36,22 @@ ob_start();
                     <div class="part-articles" id="part-articles-<?= $index ?>">
                         <div class="part-articles-header">
                             <span class="part-article-count"><?= count($part['articles']) ?> article<?= count($part['articles']) === 1 ? '' : 's' ?></span>
-                            <span class="part-chevron">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </span>
+                            <button class="part-chevron-btn" aria-expanded="false" aria-controls="article-list-<?= $index ?>" data-chevron-index="<?= $index ?>">
+                                <span class="part-chevron">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </span>
+                            </button>
                         </div>
-                        <?php
-                        // Sort articles within part by date descending
-                        $partArticles = $part['articles'];
-                        usort($partArticles, function ($a, $b) {
-                            $dateA = $a['date'] ?? '0000-00-00';
-                            $dateB = $b['date'] ?? '0000-00-00';
-                            return strcmp($dateB, $dateA);
-                        });
-                        ?>
-                        <ul class="article-items">
+                        <ul class="article-items" id="article-list-<?= $index ?>">
+                            <?php
+                            // Sort articles within part by date descending
+                            $partArticles = $part['articles'];
+                            usort($partArticles, function ($a, $b) {
+                                $dateA = $a['date'] ?? '0000-00-00';
+                                $dateB = $b['date'] ?? '0000-00-00';
+                                return strcmp($dateB, $dateA);
+                            });
+                            ?>
                             <?php foreach ($partArticles as $article): ?>
                                 <li class="article-item">
                                     <span class="article-date"><?= e($article['date'] ?? '') ?></span>
