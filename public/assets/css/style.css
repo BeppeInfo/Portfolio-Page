@@ -897,7 +897,7 @@ img {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  flex: 1;
+  width: 100%;
   min-width: 0;
   padding: 1rem 1.25rem;
   background: var(--color-surface);
