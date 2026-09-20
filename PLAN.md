@@ -24,7 +24,7 @@
 
 | Principle | Detail |
 |-----------|--------|
-| **Zero dependencies** | No Composer, no frameworks — pure PHP 8.2+ with the built-in server for dev, Nginx for prod |
+| **Zero dependencies** | No Composer, no frameworks — pure PHP 8.5+ with the built-in server for dev, Nginx for prod |
 | **Data-driven** | All content lives in JSON/YAML config files — edit a file, refresh the page |
 | **Static-first** | The entire site is essentially static HTML generated from data files; no database needed |
 | **Container-native** | Single Docker image, non-root user, health checks, readiness probes |
@@ -545,7 +545,7 @@ Language switcher in nav bar.
 
 ```dockerfile
 # Stage 1: Build (not needed for pure PHP, but kept for thumbnail generation)
-FROM php:8.2-fpm-alpine AS base
+FROM php:8.5-fpm-alpine3.23 AS base
 RUN apk add --no-cache \
       icu-data-full \
       icu-libs \
@@ -577,7 +577,7 @@ USER nginx
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-### 8.2 docker-compose.yml (Local Development)
+### 8.5 docker-compose.yml (Local Development)
 
 ```yaml
 version: '3.8'
@@ -622,7 +622,7 @@ server {
 
     # PHP
     location ~ \.php$ {
-        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+        fastcgi_pass unix:/run/php/php8.5-fpm.sock;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         include fastcgi_params;
     }
@@ -946,7 +946,7 @@ before_footer     // inject newsletter signup, etc.
 | `json` | Native — no install needed |
 | `mbstring` | Multibyte string handling (UTF-8 for PT/ES) |
 
-All included in `php:8.2-fpm-alpine` base image.
+All included in `php:8.5-fpm-alpine3.23` base image.
 
 ## Appendix C — Security Checklist
 

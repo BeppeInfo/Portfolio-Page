@@ -18,7 +18,7 @@
  *   <name>-large.webp  — 1600×1067 (lightbox / detail view)
  *
  * Requirements:
- *   - PHP 8.2+ with GD extension
+ *   - PHP 8.5+ with GD extension
  *   - libwebp support compiled into GD (check phpinfo() for "WebP Support")
  *
  * Examples:

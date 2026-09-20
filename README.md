@@ -10,7 +10,7 @@
 
 ## Overview
 
-A data-driven, zero-dependency portfolio site built with pure PHP 8.2+, Nginx, and PHP-FPM. All content is managed through JSON configuration files — no database, no Composer, no frameworks. Designed to run as a single Docker image under 100 MB and deploy seamlessly to Kubernetes (k3s).
+A data-driven, zero-dependency portfolio site built with pure PHP 8.5+, Nginx, and PHP-FPM. All content is managed through JSON configuration files — no database, no Composer, no frameworks. Designed to run as a single Docker image under 100 MB and deploy seamlessly to Kubernetes (k3s).
 
 ### Features
 
@@ -374,7 +374,7 @@ For each source image, the script generates:
 
 All outputs are center-cropped to fit the target aspect ratio and saved as WebP at 85% quality.
 
-> **Requirements:** PHP 8.2+ with GD extension and WebP support (`gd_info()['WebP Support']`).
+> **Requirements:** PHP 8.5+ with GD extension and WebP support (`gd_info()['WebP Support']`).
 
 ### Adding Media Content
 
@@ -438,7 +438,7 @@ Portfolio-Page/
 │   └── 404.php                    # Custom 404 page
 │
 ├── docker/
-│   ├── Dockerfile                 # php:8.2-fpm-alpine + nginx
+│   ├── Dockerfile                 # php:8.5-fpm-alpine3.23 + nginx
 │   ├── entrypoint.sh              # Merges user config overrides with defaults
 │   ├── docker-compose.yml         # Local dev with volume mounts
 │   ├── nginx.conf                 # Nginx base config (http block)
@@ -544,7 +544,7 @@ Edit the `colors` object in `site.json`. The CSS uses CSS custom properties that
 
 ### Docker Image
 
-- **Base:** `php:8.2-fpm-alpine`
+- **Base:** `php:8.5-fpm-alpine3.23`
 - **Size:** ~98 MB
 - **PHP Extensions:** `intl`, `mbstring`, `gd` (configured with `--with-webp --with-jpeg --with-freetype` for full image support)
 - **Runtime:** Nginx + PHP-FPM in a single container

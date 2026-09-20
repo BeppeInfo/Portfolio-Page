@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.5-fpm-alpine3.23
 
 LABEL maintainer="Beppe Info <beppe.info@protonmail.com>"
 LABEL org.opencontainers.image.source="https://github.com/BeppeInfo/Portfolio-Page"

@@ -70,7 +70,7 @@ All outputs are center-cropped to fit the target aspect ratio and saved as WebP 
 
 ### Requirements
 
-- PHP 8.2+ with GD extension
+- PHP 8.5+ with GD extension
 - WebP support compiled into GD (`gd_info()['WebP Support']`)
 
 Check your environment:
