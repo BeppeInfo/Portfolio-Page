@@ -15,6 +15,7 @@
   },
   "education": {
     "title": "Formação",
+    "institution": "Instituição",
     "location": "Local",
     "year": "Período"
   },
